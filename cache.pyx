@@ -1,34 +1,39 @@
-"""Cache to avoid loading each text every time."""
+# cython: language_level=3
 
 import json
 import os
+from cpython cimport bool
 
-
-class Cache:
+cdef class Cache:
     """A simple JSON cache for storing PDFs chuck sizes."""
 
-    def __init__(self, path: str) -> None:
-        self.path = path
-        self.cache = self._load_cache()
+    cdef str _path
+    cdef dict _cache
 
-    def get(self, key: str) -> int | None:
+    def __cinit__(self, str path):
+        self._path = path
+        self._cache = self._load_cache()
+
+    cpdef int get(self, str key):
         """Retrieve value from cache."""
-        return self.cache.get(key)
+        if self.has_key(key):
+            return self._cache[key]
+        return -1
 
-    def set(self, key: str, value: int) -> None:
+    cpdef void set(self, str key, int value):
         """Set value in cache and update the JSON file."""
-        self.cache[key] = value
-        with open(self.path, "w") as f:
-            json.dump(self.cache, f, indent=4)
+        self._cache[key] = value
+        with open(self._path, "w") as f:
+            json.dump(self._cache, f, indent=4)
 
-    def has_key(self, key: str) -> bool:
+    cpdef bool has_key(self, str key):
         """Check if a key is already cached."""
-        return key in self.cache
+        return key in self._cache
 
-    def _load_cache(self) -> dict[str, int | str]:
-        """Load the cache file from disk."""
-        if os.path.exists(self.path):
-            with open(self.path) as f:
+    cdef dict _load_cache(self):
+        """Load the cache from disk."""
+        if os.path.exists(self._path):
+            with open(self._path) as f:
                 return json.load(f)
         else:
             return {}
