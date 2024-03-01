@@ -18,7 +18,8 @@ PARAMETER stop "[INST]"
 PARAMETER stop "[/INST]"
 PARAMETER num_ctx 2048
 PARAMETER num_predict 512
-PARAMETER repeat_last_n 512
+PARAMETER num_gpu 1
+PARAMETER repeat_last_n -1
 PARAMETER repeat_penalty 1.1
 PARAMETER temperature 0.72
 PARAMETER top_k 0
