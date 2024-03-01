@@ -83,6 +83,6 @@ def embed(max_chunks: int = 50) -> None:
             continue
 
         # Store the documents.
-        helpers.store_docs(docs, ids, store.embedding)
+        helpers.store_docs(docs, ids)
 
         print(f"    Storing: OK!")

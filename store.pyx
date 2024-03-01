@@ -3,6 +3,8 @@
 import os
 
 import dotenv
+from chromadb import Client
+from chromadb.config import Settings
 from langchain.text_splitter import Document
 from langchain_community.vectorstores import Chroma
 
@@ -20,21 +22,35 @@ db_name = os.getenv("DB_NAME")
 # The directory to persist the vector store in.
 db_path = os.getenv("DB_PATH")
 
+# The embedding function to use.
+embeddings = Embeddings(model_name)
+
 
 class Store(Chroma):
     """The vector store."""
 
-    def __init__(self):
-        self.embedding = Embeddings(model_name)
+    def __init__(
+        self,
+        collection_name: str = db_name,
+        persist_directory: str = db_path,
+        embedding_function: Embeddings = embeddings,
+        client_settings: Settings = None,
+        client: Client = None,
+        collection_metadata: dict = None,
+    ) -> None:
         super().__init__(
-            collection_name=db_name,
-            persist_directory=db_path,
-            embedding_function=self.embedding,
+            collection_name=collection_name,
+            persist_directory=persist_directory,
+            embedding_function=Embeddings(model_name),
+            client_settings=client_settings,
+            client=client,
+            collection_metadata=collection_metadata,
         )
+        self.embedding = self._embedding_function
 
     def from_docs(self, docs: list[Document], ids: list[str]) -> Chroma:
         """Load store from documents."""
-        self.__class__.from_documents(
+        return self.__class__.from_documents(
             ids=ids,
             documents=docs,
             embedding=self.embedding,
