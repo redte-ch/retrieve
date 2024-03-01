@@ -2,4 +2,5 @@
 *.so
 .env
 .idea
+__pycache__
 build

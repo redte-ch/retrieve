@@ -1,0 +1,131 @@
+[tool.poetry]
+name = "zotero-qa"
+version = "0.1.0"
+description = ""
+authors = ["Mauko Quiroga <public@mauko.me>"]
+license = "APGL-3.0"
+readme = "README.md"
+packages = [{ include = "zotero_qa", from = "src" }]
+build = "build.py"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+alive-progress = "3.1.5"
+chromadb = "0.4.24"
+cryptography = "42.0.5"
+Cython = "3.0.8"
+langchain = "0.1.9"
+langchain-community = "0.0.24"
+pypdf = "4.0.2"
+python-dotenv = "1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "24.2.0"
+cython-lint = "0.16.0"
+ipython = "8.22.1"
+mypy = "1.8.0"
+ruff = "^0.3.0"
+
+[build-system]
+requires = ["poetry-core", "cython"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks.format]
+sequence = ["black .", "ruff check --fix ."]
+help = "Format all code."
+default_item_type = "cmd"
+
+[tool.poe.tasks.lint]
+sequence = ["cython-lint .", "black --check .", "ruff check .", "mypy src/zotero_qa"]
+help = "Lint all code."
+default_item_type = "cmd"
+
+[tool.poe.tasks.test]
+sequence = ["pytest ."]
+help = "Test all code."
+default_item_type = "cmd"
+
+[tool.black]
+target-version = ["py311"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    # pyflakes
+    "F",
+    # pycodestyle
+    "E", "W",
+    # flake8-2020
+    "YTT",
+    # flake8-bugbear
+    "B",
+    # flake8-quotes
+    "Q",
+    # flake8-debugger
+    "T10",
+    # flake8-gettext
+    "INT",
+    # pylint
+    "PL",
+    # flake8-pytest-style
+    "PT",
+    # misc lints
+    "PIE",
+    # flake8-pyi
+    "PYI",
+    # tidy imports
+    "TID",
+    # implicit string concatenation
+    "ISC",
+    # type-checking imports
+    "TCH",
+    # comprehensions
+    "C4",
+    # pygrep-hooks
+    "PGH",
+    # Ruff-specific rules
+    "RUF",
+    # flake8-bandit: exec-builtin
+    "S102",
+    # numpy-legacy-random
+    "NPY002",
+    # Perflint
+    "PERF",
+    # flynt
+    "FLY",
+    # flake8-logging-format
+    "G",
+    # flake8-future-annotations
+    "FA",
+]
+
+[tool.mypy]
+python_version = "3.11"
+allow_redefinition = false
+check_untyped_defs = true
+files = ["src/**/*.py", "src/**/*.pyx", "src/**/*.pyd"]
+ignore_errors = false
+ignore_missing_imports = false
+implicit_reexport = false
+local_partial_types = true
+no_implicit_optional = true
+strict = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config --capture=no"
+empty_parameter_set_mark = "fail_at_collect"
+testpaths = ["tests"]
+xfail_strict = true
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "IGNORE_EXCEPTION_DETAIL",
+    "ELLIPSIS",
+]

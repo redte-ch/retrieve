@@ -1,45 +1,45 @@
+# cython: language_level=3
+
 import copy
 import re
-from typing import Iterable
 
-from document import Document
+from document cimport Document
 
 
-class TextSplitter:
-    """Wrapper around the text splitter."""
+cdef class TextSplitter:
+    cdef int chunk_size
+    cdef int chunk_overlap
+    cdef object separator_pattern
 
-    def __init__(self, chunk_size: int, chunk_overlap: int) -> None:
+    def __cinit__(self, int chunk_size, int chunk_overlap):
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
-        # Pre-compile the regular expression for performance
         self.separator_pattern = re.compile(re.escape("\n\n"))
 
-    def split_text(self, text: str) -> list[str]:
-        """Split incoming text into chunks based on chunk_size and separator."""
+    cpdef list[str] split_text(self, str text):
         # Split text using the compiled regex
-        splits = self.separator_pattern.split(text)
+        cdef list[str] splits = self.separator_pattern.split(text)
         # Filter out any empty strings
         splits = [s for s in splits if s]
         # Merge splits into chunks based on chunk_size and chunk_overlap
         return self._merge_splits(splits)
 
-    def split_documents(self, docs: Iterable[Document]) -> list[Document]:
-        """Split a list of documents into chunks, preserving metadata."""
-        result_docs = []
-        for doc in docs:
-            for chunk in self.split_text(doc.page_content):
+    cpdef list[Document] split_documents(self, list[Document] docs):
+        cdef list result_docs = []
+        cdef str chunk
+        cdef Document doc
+        for d in docs:
+            for chunk in self.split_text(d.page_content):
                 # Use copy to ensure metadata is not shared between chunks
-                new_doc = Document(
-                    page_content=chunk, metadata=copy.deepcopy(doc.metadata)
-                )
-                result_docs.append(new_doc)
+                doc = Document(page_content=chunk, metadata=copy.deepcopy(d.metadata))
+                result_docs.append(doc)
         return result_docs
 
-    def _merge_splits(self, splits: list[str]) -> list[str]:
-        """Merge splits into chunks, respecting the chunk_size and chunk_overlap."""
-        chunks = []
-        current_chunk = []
-        current_len = 0
+    cdef list[str] _merge_splits(self, list[str] splits):
+        cdef list[str] chunks = []
+        cdef list[str] current_chunk = []
+        cdef int current_len = 0
+        cdef int split_len
 
         for split in splits:
             split_len = len(split)
