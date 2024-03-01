@@ -2,7 +2,9 @@
 
 import json
 import os
+
 from cpython cimport bool
+
 
 cdef class Cache:
     """A simple JSON cache for storing PDFs chuck sizes."""

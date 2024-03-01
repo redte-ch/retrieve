@@ -1,11 +1,9 @@
-"""Helper class to wrap the Ollama embeddings."""
-
 import alive_progress
 from langchain_community.embeddings import OllamaEmbeddings
 
 
 class Embeddings:
-    """Wrapper for the Ollama embeddings."""
+    """Helper class to wrap the Ollama embeddings with a progress bar."""
 
     def __init__(self, model_name: str) -> None:
         """Create a new Ollama embeddings object."""

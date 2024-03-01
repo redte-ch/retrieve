@@ -7,8 +7,8 @@ import dotenv
 from langchain.text_splitter import Document
 from langchain_community.document_loaders import PyPDFLoader
 
-from splitter import Splitter
 from store import Store
+from text_splitter import TextSplitter
 
 # Load the environment variables.
 dotenv.load_dotenv()
@@ -23,7 +23,7 @@ model_name = os.getenv("MODEL_NAME")
 store = Store()
 
 # The text splitter object.
-splitter = Splitter()
+splitter = TextSplitter()
 
 
 def get_files(path: str) -> list[Path]:
