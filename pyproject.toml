@@ -1,19 +1,36 @@
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+    "poetry-dynamic-versioning>=1.0.1",
+    "Cython>=3.0.0",
+    "setuptools>=61.0",
+]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
+
 [tool.poetry]
 name = "zotero-qa"
-version = "0.1.0"
+version = "0.0.0"
 description = ""
-authors = ["Mauko Quiroga <public@mauko.me>"]
+authors = ["Mauko Quiroga-Alvarado <mauko@redte.ch>"]
 license = "APGL-3.0"
 readme = "README.md"
 packages = [{ include = "zotero_qa", from = "src" }]
-build = "build.py"
+include = ["src/zotero_qa/**/*.so", "src/zotero_qa/**/*.pyd"]
+
+[tool.poetry.build]
+script = 'build.py'
+generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
 alive-progress = "3.1.5"
 chromadb = "0.4.24"
 cryptography = "42.0.5"
-Cython = "3.0.8"
 langchain = "0.1.9"
 langchain-community = "0.0.24"
 pypdf = "4.0.2"
@@ -21,14 +38,11 @@ python-dotenv = "1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "24.2.0"
+cython = "3.0.8"
 cython-lint = "0.16.0"
 ipython = "8.22.1"
 mypy = "1.8.0"
 ruff = "^0.3.0"
-
-[build-system]
-requires = ["poetry-core", "cython"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.poe.tasks.format]
 sequence = ["black .", "ruff check --fix ."]

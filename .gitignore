@@ -1,6 +1,8 @@
 *.c
+*.html
 *.so
 .env
 .idea
 __pycache__
 build
+dist
