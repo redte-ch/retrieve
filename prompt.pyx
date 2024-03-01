@@ -6,7 +6,7 @@ from langchain.prompts import PromptTemplate
 template = """
     Tu es mon assistant.
     Fais ce que je te dis.
-    Basée sur mes documents, réponds aux questions.
+    Basé ou basée sur mes documents, réponds aux questions.
     Réponds toujours en français, même si les documents ne le sont pas.
     Context: {context}
     User: {question}
