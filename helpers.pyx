@@ -19,11 +19,17 @@ zotero_path = os.getenv("ZOTERO_PATH")
 # The name of the Ollama model to use.
 model_name = os.getenv("MODEL_NAME")
 
+# The size of the chunks to split the text into.
+chunk_size = int(os.getenv("CHUNK_SIZE"))
+
+# The overlap between chunks.
+chunk_overlap = int(os.getenv("CHUNK_OVERLAP"))
+
 # The vector store object.
 store = Store()
 
 # The text splitter object.
-splitter = TextSplitter()
+splitter = TextSplitter(chunk_size, chunk_overlap)
 
 
 def get_files(path: str) -> list[Path]:
