@@ -1,0 +1,25 @@
+FROM mistral:latest
+
+TEMPLATE """
+    [INST]
+    {{ .System }}
+    {{ .Prompt }}
+    [/INST]
+"""
+
+SYSTEM """
+    Tu es mon assistant.
+    Fais ce que je te dis.
+    Basée sur mes documents, réponds aux questions.
+    Réponds toujours en français, même si les documents ne le sont pas.
+"""
+
+PARAMETER stop "[INST]"
+PARAMETER stop "[/INST]"
+PARAMETER num_ctx 2048
+PARAMETER num_predict 512
+PARAMETER repeat_last_n 512
+PARAMETER repeat_penalty 1.1
+PARAMETER temperature 0.72
+PARAMETER top_k 0
+PARAMETER top_p 0.73
