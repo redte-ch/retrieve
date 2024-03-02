@@ -1,4 +1,6 @@
 # cython: language_level=3
+# cython: c_string_type=unicode
+# cython: c_string_encoding=utf8
 
 import copy
 import re
@@ -9,20 +11,7 @@ from document cimport Document
 cdef class TextSplitter:
     cdef int chunk_size
     cdef int chunk_overlap
-    cdef object separator_pattern
-
-    def __cinit__(self, int chunk_size, int chunk_overlap):
-        self.chunk_size = chunk_size
-        self.chunk_overlap = chunk_overlap
-        self.separator_pattern = re.compile(re.escape("\n\n"))
-
-    cpdef list[str] split_text(self, str text):
-        # Split text using the compiled regex
-        cdef list[str] splits = self.separator_pattern.split(text)
-        # Filter out any empty strings
-        splits = [s for s in splits if s]
-        # Merge splits into chunks based on chunk_size and chunk_overlap
-        return self._merge_splits(splits)
+    cdef public object separator_pattern
 
     cpdef list[Document] split_documents(self, list[Document] docs):
         cdef list result_docs = []
@@ -35,9 +24,22 @@ cdef class TextSplitter:
                 result_docs.append(doc)
         return result_docs
 
-    cdef list[str] _merge_splits(self, list[str] splits):
-        cdef list[str] chunks = []
-        cdef list[str] current_chunk = []
+    def __cinit__(self, int chunk_size, int chunk_overlap, char* separator):
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
+        self.separator_pattern = re.compile(re.escape(separator))
+
+    cpdef list[str] split_text(self, char* text):
+        # Split text using the compiled regex
+        cdef list[str] splits = self.separator_pattern.split(text)
+        # Filter out any empty strings
+        splits = [s for s in splits if s]
+        # Merge splits into chunks based on chunk_size and chunk_overlap
+        return self.merge_splits(splits)
+
+    cdef list[char*] merge_splits(self, list[char*] splits):
+        cdef list[char*] chunks = []
+        cdef list[char*] current_chunk = []
         cdef int current_len = 0
         cdef int split_len
 

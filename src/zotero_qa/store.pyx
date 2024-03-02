@@ -8,7 +8,7 @@ from chromadb.config import Settings
 from langchain.text_splitter import Document
 from langchain_community.vectorstores import Chroma
 
-from embeddings import Embeddings
+from zotero_qa.embeddings import Embeddings
 
 # Load the environment variables.
 dotenv.load_dotenv()

@@ -2,9 +2,9 @@
 
 from langchain.chains import RetrievalQA
 
-from llm import LLM
-from prompt import Prompt
-from store import Store
+from zotero_qa.llm import LLM
+from zotero_qa.prompt import Prompt
+from zotero_qa.store import Store
 
 # The prompt template object.
 prompt = Prompt()

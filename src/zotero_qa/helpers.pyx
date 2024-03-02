@@ -5,10 +5,10 @@ from pathlib import Path
 
 import dotenv
 from langchain.text_splitter import Document
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 
-from store import Store
-from text_splitter import TextSplitter
+from zotero_qa.store import Store
+from zotero_qa.text_splitter import TextSplitter
 
 # Load the environment variables.
 dotenv.load_dotenv()
@@ -42,7 +42,7 @@ def get_files(path: str) -> list[Path]:
 def get_docs(path: str) -> list[Document]:
     """Load a document from the file system."""
     print("    Loading...")
-    data = PyPDFLoader(path).load()
+    data = PyMuPDFLoader(path).load()
     return splitter.split_documents(data)
 
 

@@ -2,8 +2,8 @@
 
 import sys
 
-from embed import embed
-from query import query
+from zotero_qa.embed import embed
+from zotero_qa.query import query
 
 if __name__ == "__main__":
     if sys.argv[1] == "embed":

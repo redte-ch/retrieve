@@ -4,9 +4,9 @@ import os
 
 import dotenv
 
-import helpers
-from cache import Cache
-from store import Store
+from zotero_qa import helpers
+from zotero_qa.cache import Cache
+from zotero_qa.store import Store
 
 # Load the environment variables.
 dotenv.load_dotenv()

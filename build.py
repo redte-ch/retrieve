@@ -1,71 +1,66 @@
 import shutil
 from pathlib import Path
+from setuptools import Extension, Distribution
+from Cython.Build import build_ext, cythonize
+import Cython.Compiler.Options as CompilerOptions
 
-from setuptools import Extension
-from setuptools.dist import Distribution
-import Cython.Compiler.Options
-from Cython.Build import (
-    build_ext,
-    cythonize,
-)
+# Enable annotation in Cython for performance analysis.
+CompilerOptions.annotate = True
 
-Cython.Compiler.Options.annotate = True
-
+# Compiler and linker arguments for optimization and warnings.
 extra_compile_args = [
-    "-O3",
-    "-Werror",
-    "-Wno-unreachable-code-fallthrough",
-    "-Wno-deprecated-declarations",
-    "-Wno-parentheses-equality",
-    "-UNDEBUG",
+    "-O3",  # Optimize code, more aggressive level of optimization.
+    "-Wall",  # Enable all warning messages.
+    "-Werror",  # Treat warnings as errors.
+    "-fopenmp",  # Enable OpenMP for parallel programming.
+    "-march=native",  # Optimize for the architecture of the compiling machine.
+    "-mtune=native",  # Tune the code for the architecture of the compiling machine.
 ]
 
+# Assuming that link arguments are the same as compile arguments for now.
+# If there are link-specific arguments, they should be added here.
+extra_link_args = extra_compile_args.copy()
 
-def dotted_path(path: Path) -> str:
-    parts = path.parts
 
-    if path.drive:
-        return ".".join(parts[1:])
-
+def get_dotted_path(path: Path) -> str:
+    """Convert a file system path to a dotted path notation used in Python modules."""
+    # Skip the drive for Windows paths.
+    parts = path.parts[1:] if path.drive else path.parts
     return ".".join(parts)
 
 
-def build_cython_extension(path: Path):
-    extensions = [
-        Extension(
-            f"{dotted_path(path.parent)}.{path.stem}",
-            [
-                str(path),
-            ],
-            include_dirs=[str(path.parent)],
-            extra_compile_args=extra_compile_args,
-            language="c",
-        ),
-    ]
-
-    include_dirs = set()
-    for extension in extensions:
-        include_dirs.update(extension.include_dirs)
-    include_dirs = list(include_dirs)
+def build_cython_extension(source_path: Path):
+    """Build a Cython extension from a given source file."""
+    module_name = f"{get_dotted_path(source_path.parent)}.{source_path.stem}"
+    extension = Extension(
+        name=module_name,
+        sources=[str(source_path)],
+        include_dirs=[str(source_path.parent)],
+        extra_compile_args=extra_compile_args,
+        extra_link_args=extra_link_args,
+        language="c",
+    )
 
     ext_modules = cythonize(
-        extensions,
-        include_path=include_dirs,
+        [extension],
+        include_path=[str(source_path.parent)],
         language_level=3,
         annotate=True,
         compiler_directives={"linetrace": True, "binding": True},
         verbose=True,
     )
+
     dist = Distribution({"ext_modules": ext_modules})
     cmd = build_ext(dist)
     cmd.ensure_finalized()
     cmd.run()
 
+    # Copy built extensions to their source directories.
     for output in cmd.get_outputs():
-        output = Path(output)
-        relative_extension = output.relative_to(cmd.build_lib)
-        shutil.copyfile(output, relative_extension)
+        target_path = Path(output).relative_to(cmd.build_lib)
+        shutil.copy(output, target_path)
 
 
-for path in Path("src/zotero_qa").rglob("*.pyx"):
-    build_cython_extension(path)
+# Build Cython extensions for all .pyx files in a specific directory.
+for pyx_path in Path("src/zotero_qa").rglob("*.pyx"):
+    build_cython_extension(pyx_path)

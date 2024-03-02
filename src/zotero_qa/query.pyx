@@ -2,7 +2,7 @@
 
 import warnings
 
-from chain import Chain
+from zotero_qa.chain import Chain
 
 # Suppress warnings.
 warnings.filterwarnings("ignore")

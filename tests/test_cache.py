@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from zotero_qa.cache import Cache
+from zotero_qa import Cache
 
 
 @pytest.fixture()
@@ -14,8 +14,9 @@ def tmp_dir(tmp_path):
 
 @pytest.fixture()
 def cache(tmp_dir):
-    cache_file = tmp_dir / "cache.json"
-    return Cache(str(cache_file))
+    cache_path = tmp_dir / "cache.json"
+    cache_file = str(cache_path)
+    return Cache(cache_file)
 
 
 def test_cache_set(cache):
@@ -63,14 +64,15 @@ def test_has_key_when_miss(cache):
 
 def test_load_cache_from_existing_file(tmp_dir):
     # Arrange
-    cache_file = tmp_dir / "cache.json"
+    cache_path = tmp_dir / "cache.json"
+    cache_file = str(cache_path)
     dump = {"key": 1}
 
-    with open(str(cache_file), "w") as f:
+    with open(cache_file, "w") as f:
         json.dump(dump, f)
 
     # Act
-    cache = Cache(str(cache_file))
+    cache = Cache(cache_file)
     value = cache.get("key")
 
     # Assert
