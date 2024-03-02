@@ -5,19 +5,20 @@ from zotero_qa.text_splitter import TextSplitter
 
 @pytest.fixture()
 def splitter():
-    return TextSplitter(chunk_size=2, chunk_overlap=1, separator = "\t\t")
+    return TextSplitter(chunk_size=2, chunk_overlap=1, separator="\t\t")
 
 
-def test_split_text(splitter):
+def test_split_text_by_separator():
     # Arrange
-    separator = splitter.separator_pattern
+    separator = "\n\n"
+    splitter = TextSplitter(chunk_size=2, chunk_overlap=1, separator=separator)
     text = f"This\t\tis a\n\ntest text.\n\n Don't\n\ntry this\n\nhome."
 
     # Act
     chunks = splitter.split_text(text)
 
     # Assert
-    assert len(chunks) == 2
+    assert len(chunks) == 5
 
 
 # def test_split_text_with_overlap():

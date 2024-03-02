@@ -1,8 +1,10 @@
 import shutil
 from pathlib import Path
-from setuptools import Extension, Distribution
-from Cython.Build import build_ext, cythonize
+
 import Cython.Compiler.Options as CompilerOptions
+import numpy
+from Cython.Build import build_ext, cythonize
+from setuptools import Distribution, Extension
 
 # Enable annotation in Cython for performance analysis.
 CompilerOptions.annotate = True
@@ -17,9 +19,9 @@ extra_compile_args = [
     "-mtune=native",  # Tune the code for the architecture of the compiling machine.
 ]
 
-# Assuming that link arguments are the same as compile arguments for now.
-# If there are link-specific arguments, they should be added here.
-extra_link_args = extra_compile_args.copy()
+extra_link_args = [
+    "-fopenmp",  # Enable OpenMP for parallel programming.
+]
 
 
 def get_dotted_path(path: Path) -> str:
@@ -32,21 +34,36 @@ def get_dotted_path(path: Path) -> str:
 def build_cython_extension(source_path: Path):
     """Build a Cython extension from a given source file."""
     module_name = f"{get_dotted_path(source_path.parent)}.{source_path.stem}"
+    # Define an extension module.
     extension = Extension(
         name=module_name,
         sources=[str(source_path)],
-        include_dirs=[str(source_path.parent)],
-        extra_compile_args=extra_compile_args,
-        extra_link_args=extra_link_args,
         language="c",
+        include_dirs=[str(source_path.parent), numpy.get_include()],
+        define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+        extra_link_args=extra_link_args,
+        extra_compile_args=extra_compile_args,
     )
 
+    # Use cythonize to compile the Cython source file(s) into C extension modules.
     ext_modules = cythonize(
+        # List of extension objects to be compiled.
         [extension],
+        # Directories to search for .pxd files.
         include_path=[str(source_path.parent)],
+        # Python language level to interpret the source code.
         language_level=3,
+        # Generate HTML annotation file to visualize code translation.
         annotate=True,
-        compiler_directives={"linetrace": True, "binding": True},
+        compiler_directives={
+            # Enable line tracing for coverage reporting.
+            "linetrace": False,
+            # Prepare the code for profiling.
+            "profile": False,
+            # Allow C functions to be called with Python call semantics.
+            "binding": True,
+        },
+        # Print detailed compilation information.
         verbose=True,
     )
 

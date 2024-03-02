@@ -4,11 +4,20 @@ import os
 from pathlib import Path
 
 import dotenv
-from langchain.text_splitter import Document
+import numpy
 from langchain_community.document_loaders import PyMuPDFLoader
 
+from zotero_qa cimport Document
 from zotero_qa.store import Store
 from zotero_qa.text_splitter import TextSplitter
+
+# It's necessary to call "import_array" if you use any part of the
+# numpy PyArray_* API. From Cython 3, accessing attributes like
+# ".shape" on a typed Numpy array use this API. Therefore we recommend
+# always calling "import_array" whenever you "cimport numpy".
+#
+# Source: https://cython.readthedocs.io/en/latest/src/tutorial/numpy.html
+# numpy.import_array()
 
 # Load the environment variables.
 dotenv.load_dotenv()
@@ -29,7 +38,7 @@ chunk_overlap = int(os.getenv("CHUNK_OVERLAP"))
 store = Store()
 
 # The text splitter object.
-splitter = TextSplitter(chunk_size, chunk_overlap)
+splitter = TextSplitter(chunk_size, chunk_overlap, "\n\n")
 
 
 def get_files(path: str) -> list[Path]:
@@ -43,6 +52,12 @@ def get_docs(path: str) -> list[Document]:
     """Load a document from the file system."""
     print("    Loading...")
     data = PyMuPDFLoader(path).load()
+    shape = len(data)
+    array = numpy.empty([shape], dtype=object)
+
+    for index in range(shape):
+        array[index] = data[index]
+
     return splitter.split_documents(data)
 
 

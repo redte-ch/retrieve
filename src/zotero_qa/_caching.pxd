@@ -1,4 +1,6 @@
 # cython: language_level=3
+# cython: c_string_type=unicode
+# cython: c_string_encoding=utf8
 
 from cpython cimport bool
 
