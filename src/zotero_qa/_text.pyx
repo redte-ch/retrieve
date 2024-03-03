@@ -8,23 +8,7 @@ from zotero_qa cimport Page, PageParser
 
 
 cdef class DocSplitter:
-    cdef public int chunk_size
-    cdef public int chunk_overlap
-    cdef char* separator
-    cdef object separator_pattern
-
-    def __cinit__(self, int chunk_size, int chunk_overlap, char* separator):
-        self.chunk_size = chunk_size
-        self.chunk_overlap = chunk_overlap
-        self.separator = separator
-        self.separator_pattern = re.compile(re.escape(separator))
-
-    cpdef list[Page] split(self, PageParser parser):
-        cdef TextSplitter text_splitter = TextSplitter(
-            self.chunk_size,
-            self.chunk_overlap,
-            self.separator,
-        )
+    cpdef list[Page] split(self, PageParser parser, TextSplitter text_splitter):
         cdef int n = parser.doc.page_count
         cdef list[Page] acc = []
 
