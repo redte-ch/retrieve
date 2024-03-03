@@ -3,4 +3,4 @@
 from ._caching import Cache
 from ._pdf import DocLoader, PageParser
 
-__all__ = ["Cache", "DocLoader", "PageParser"]
+__all__ = ["DocLoader", "PageParser"]
