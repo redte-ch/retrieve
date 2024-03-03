@@ -79,5 +79,5 @@ def build_cython_extension(source_path: Path):
 
 
 # Build Cython extensions for all .pyx files in a specific directory.
-for pyx_path in Path("src/zotero_qa").rglob("*.pyx"):
+for pyx_path in Path("src").rglob("*.pyx"):
     build_cython_extension(pyx_path)

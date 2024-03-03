@@ -3,58 +3,73 @@
 # cython: c_string_encoding=utf8
 # Based on https://github.com/langchain-ai/langchain.
 
-from pathlib import Path
-from typing import Iterator
+"""Load and parse a PDF document using MuPDF."""
 
 import fitz
 
-from zotero_qa cimport Document, Metadata
+
+cdef struct Metadata:
+    char* author
+    char* created_at
+    char* creator
+    char* format
+    char* keywords
+    char* path
+    char* producer
+    char* subject
+    char* title
+    char* updated_at
+    int page
+    int total_pages
 
 
-class PDFLoader:
-    """Load `PDF` files using `PyMuPDF`."""
+cdef struct Page:
+    char* text
+    Metadata metadata
 
-    file_path: str
-    source: str
 
-    def __init__(self, path: Path) -> None:
+cdef class DocLoader:
+    """Load a PDF document from a file path."""
+    cdef object doc
+    cdef public char* path
+    cdef int total_pages
+
+    def __cinit__(self, char* path):
         """Initialize with a file path."""
-        self.file_path = str(path)
-        self.source = self.file_path
-
-    def load(self) -> fitz.Document:
-        """Load file."""
-        return fitz.open(self.file_path, filetype="pdf")
+        self.doc = fitz.open(path)
+        self.path = path
+        self.total_pages = self.doc.page_count
 
 
-class PDFParser:
-    """Parse `PDF` using `PyMuPDF`."""
+cdef class PageParser:
+    """Parse a PDF document page."""
+    cdef DocLoader loader
+    cdef object doc
 
-    def __init__(self, loader: PDFLoader) -> None:
+    def __cinit__(self, DocLoader loader):
         """Initialize the parser."""
         self.loader = loader
-        self.doc = loader.load()
+        self.doc = loader.doc
 
-    def parse(self) -> Iterator[Document]:
+    cpdef Page parse(self, int at):
         """Parse the doc."""
-        yield from [
-            Document(
-                text=page.get_text().strip().replace("\n \n", "\n\n"),
-                metadata=Metadata(
-                    author=self.doc.metadata["author"],
-                    creationDate=self.doc.metadata["creationDate"],
-                    creator=self.doc.metadata["creator"],
-                    file_path=self.loader.source,
-                    format=self.doc.metadata["format"],
-                    keywords=self.doc.metadata["keywords"],
-                    modDate=self.doc.metadata["modDate"],
-                    page=page.number,
-                    producer=self.doc.metadata["producer"],
-                    source=self.loader.source,
-                    subject=self.doc.metadata["subject"],
-                    title=self.doc.metadata["title"],
-                    total_pages = self.doc.page_count,
-                )
+        cdef str page_text = self.loader.doc.get_page_text(at - 1)
+        cdef dict metadata = self.doc.metadata
+
+        return Page(
+            text=page_text.strip().replace("\n \n", "\n\n"),
+            metadata=Metadata(
+                author=metadata.get("author", ""),
+                created_at=metadata.get("creationDate", ""),
+                creator=metadata.get("creator", ""),
+                format=metadata.get("format"),
+                keywords=metadata.get("keywords", ""),
+                page=at,
+                path=self.loader.path,
+                producer=metadata.get("producer", ""),
+                subject=metadata.get("subject", ""),
+                title=metadata.get("title"),
+                total_pages=self.loader.total_pages,
+                updated_at=metadata.get("modDate", ""),
             )
-            for page in self.doc
-        ]
+        )

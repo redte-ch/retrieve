@@ -21,7 +21,7 @@ authors = ["Mauko Quiroga-Alvarado <mauko@redte.ch>"]
 license = "APGL-3.0"
 readme = "README.md"
 packages = [{ include = "zotero_qa", from = "src" }]
-include = ["src/zotero_qa/**/*.so", "src/zotero_qa/**/*.pyd"]
+include = ["src/**/*.so", "src/**/*.pyd"]
 
 [tool.poetry.build]
 script = 'build.py'
