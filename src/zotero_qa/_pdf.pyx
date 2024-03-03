@@ -30,30 +30,28 @@ cdef struct Page:
 
 cdef class DocLoader:
     """Load a PDF document from a file path."""
-    cdef object doc
+    cdef public object doc
     cdef public char* path
-    cdef int total_pages
 
     def __cinit__(self, char* path):
         """Initialize with a file path."""
-        self.doc = fitz.open(path)
+        self.doc = fitz.open(path, filetype="pdf")
         self.path = path
-        self.total_pages = self.doc.page_count
 
 
 cdef class PageParser:
     """Parse a PDF document page."""
-    cdef DocLoader loader
-    cdef object doc
+    cdef public DocLoader loader
+    cdef public object doc
 
     def __cinit__(self, DocLoader loader):
         """Initialize the parser."""
         self.loader = loader
-        self.doc = loader.doc
+        self.doc = self.loader.doc
 
     cpdef Page parse(self, int at):
         """Parse the doc."""
-        cdef str page_text = self.loader.doc.get_page_text(at - 1)
+        cdef str page_text = self.doc.get_page_text(at - 1)
         cdef dict metadata = self.doc.metadata
 
         return Page(
@@ -69,7 +67,7 @@ cdef class PageParser:
                 producer=metadata.get("producer", ""),
                 subject=metadata.get("subject", ""),
                 title=metadata.get("title"),
-                total_pages=self.loader.total_pages,
+                total_pages=self.doc.page_count,
                 updated_at=metadata.get("modDate", ""),
             )
         )
