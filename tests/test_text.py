@@ -5,7 +5,7 @@ from zotero_qa import DocLoader, DocSplitter, PageParser, TextSplitter
 
 @pytest.fixture()
 def doc_splitter():
-    return DocSplitter(chunk_size=0, chunk_overlap=0, separator="\n\n")
+    return DocSplitter()
 
 
 @pytest.fixture()
@@ -29,12 +29,12 @@ def text():
     return "This\t\tis a\n\ntest text.\n\n Don't\n\ntry this\n\nhome."
 
 
-def test_split_doc(doc_splitter, page_parser):
+def test_split_doc(doc_splitter, page_parser, text_splitter):
     # Arrange
     total_pages = page_parser.doc.page_count
 
     # Act
-    split_pages = doc_splitter.split(page_parser)
+    split_pages = doc_splitter.split(page_parser, text_splitter)
 
     # Assert
     assert len(split_pages) > total_pages

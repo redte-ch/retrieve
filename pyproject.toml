@@ -45,14 +45,30 @@ ipython = "8.22.1"
 mypy = "1.8.0"
 ruff = "^0.3.0"
 isort = "^5.13.2"
+pytest-sugar = "^1.0.0"
+pytest-randomly = "^3.15.0"
+pytest-clarity = "^1.0.1"
+flake8 = "^7.0.0"
+autopep8 = "^2.0.4"
 
 [tool.poe.tasks.format]
-sequence = ["isort .", "black .", "ruff format ."]
+sequence = [
+    "autopep8 .",
+    "isort .",
+    "black .",
+    "ruff format .",
+]
 help = "Format all code."
 default_item_type = "cmd"
 
 [tool.poe.tasks.lint]
-sequence = ["cython-lint .", "black --check .", "ruff check --preview .", "mypy src"]
+sequence = [
+    "flake8 .",
+    "cython-lint .",
+    "black --check .",
+    "ruff check --preview .",
+    "mypy src",
+]
 help = "Lint all code."
 default_item_type = "cmd"
 
@@ -141,10 +157,13 @@ warn_no_return = true
 warn_unreachable = true
 
 [tool.pytest.ini_options]
-addopts = "--strict-markers --strict-config --capture=no"
+addopts = "--strict-markers --strict-config --capture=fd --quiet"
 empty_parameter_set_mark = "fail_at_collect"
 testpaths = ["tests"]
 xfail_strict = true
+filterwarnings = [
+    "ignore::RuntimeWarning",
+]
 doctest_optionflags = [
     "NORMALIZE_WHITESPACE",
     "IGNORE_EXCEPTION_DETAIL",

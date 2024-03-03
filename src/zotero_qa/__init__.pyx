@@ -5,7 +5,7 @@
 from zotero_qa._caching import Cache
 from zotero_qa._pdf import DocLoader, PageParser
 from zotero_qa._text import DocSplitter, TextSplitter
-from zotero_qa._utils import get_files
+from zotero_qa._utils import list_files, open_file
 
 __all__ = [
     "Cache",
@@ -13,5 +13,6 @@ __all__ = [
     "DocSplitter",
     "PageParser",
     "TextSplitter",
-    "get_files",
+    "list_files",
+    "open_file",
 ]

@@ -1,0 +1,7 @@
+[flake8]
+aggressive = 10
+filename = *.py, *.pyx
+in-place = true
+max-line-length = 88
+recursive = true
+ignore = E999
