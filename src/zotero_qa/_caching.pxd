@@ -1,5 +1,12 @@
-# cython: language_level=3
-# distutils: language=c++
+#  Copyleft (ɔ) 2024 Red Innovation.
+#
+#  Author: Mauko Quiroga-Alvarado <mauko@redte.ch>
+#
+#  Licensed under the EUPL-1.2-or-later licence.
+#  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+#  cython: language_level=3
+#  distutils: language=c++
 
 from cpython cimport bool
 from libcpp.map cimport map

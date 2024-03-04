@@ -25,6 +25,7 @@
             "find . -name '*.pyc' -delete",
             "find . -name '__pycache__' -delete",
             "find . -name '*.so' -delete",
+            "find . -name '*.html' -delete",
         ]
         help = "Clean all build and built files."
         default_item_type = "cmd"
