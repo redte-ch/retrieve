@@ -14,16 +14,12 @@ from libcpp.string cimport string
 ctypedef map[string, int] Cache_t
 
 
-cdef class Cache:
+cdef public class Cache [object CyCache, type CyCache_t]:
     """A simple JSON cache for storing PDFs chuck sizes."""
     cdef public str path
     cdef public Cache_t cache
 
     def __cinit__(self, str path):
-        self.path = path
-        self.cache = Cache_t()
-
-    def __init__(self, str path):
         self.path = path
         self.cache = Cache_t()
 

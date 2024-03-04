@@ -1,11 +1,18 @@
-# # cython: language_level=3
-# # cython: c_string_type=unicode
-# # cython: c_string_encoding=utf8
-#
-# from cpython cimport bool
-#
-#
-# cdef class Cache:
-#     cpdef int get(self, str key)
-#     cpdef void set(self, str key, int value)
-#     cpdef bool has_key(self, str key)
+# cython: language_level=3
+# distutils: language=c++
+
+from cpython cimport bool
+from libcpp.map cimport map
+from libcpp.string cimport string
+
+ctypedef map[string, int] Cache_t
+
+
+cdef public class Cache [object CyCache, type CyCache_t]:
+    cpdef public str path
+    cpdef public Cache_t cache
+    cpdef void load(self)
+    cpdef void save(self)
+    cpdef int get(self, string key)
+    cpdef void set(self, string key, int value)
+    cpdef bool has_key(self, string key)

@@ -23,7 +23,7 @@ license = "APGL-3.0"
 readme = "README.md"
 packages = [
     { include = "zotero_qa", from = "src" },
-    { include = "cli", from = "src" }
+    { include = "cli", from = "src" },
 ]
 include = ["src/**/*.so", "src/**/*.pyd", "src/**/*.dylib"]
 
@@ -32,7 +32,7 @@ script = 'build.py'
 generate-setup-file = false
 
 [tool.poetry.scripts]
-zotero = "cli.app"
+zotero = "cli:app"
 
 [tool.poetry.dependencies]
 python = "^3.11"
