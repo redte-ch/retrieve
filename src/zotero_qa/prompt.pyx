@@ -10,7 +10,7 @@ template = """
     Réponds toujours en français, même si les documents ne le sont pas.
     Context: {context}
     User: {question}
-    Chatbot:"" 
+    Chatbot:""
 """
 
 

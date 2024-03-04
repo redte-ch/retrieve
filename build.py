@@ -1,10 +1,20 @@
+import os
 import shutil
 from pathlib import Path
 
 import Cython.Compiler.Options as CompilerOptions
 import numpy
 from Cython.Build import build_ext, cythonize
+from dotenv import dotenv_values
 from setuptools import Distribution, Extension
+
+# Load environment variables from the .env file.
+env = dotenv_values(".env")
+
+# Force the use of the C++ compiler for all Cython code.
+os.environ["CC"] = env["CC"]
+os.environ["CPP"] = env["CPP"]
+os.environ["CXX"] = env["CXX"]
 
 # Enable annotation in Cython for performance analysis.
 CompilerOptions.annotate = True
@@ -17,6 +27,7 @@ extra_compile_args = [
     "-fopenmp",  # Enable OpenMP for parallel programming.
     "-march=native",  # Optimize for the architecture of the compiling machine.
     "-mtune=native",  # Tune the code for the architecture of the compiling machine.
+    "-Wno-error=address",  # Disable address sanitizer warnings.
 ]
 
 extra_link_args = [
@@ -38,7 +49,6 @@ def build_cython_extension(source_path: Path):
     extension = Extension(
         name=module_name,
         sources=[str(source_path)],
-        language="c",
         include_dirs=[str(source_path.parent), numpy.get_include()],
         define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
         extra_link_args=extra_link_args,

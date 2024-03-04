@@ -1,9 +1,10 @@
 [build-system]
 requires = [
     "Cython>=3.0.0",
-    "numpy >= 1.26.4",
+    "numpy>=1.26.4",
     "poetry-core>=1.0.0",
     "poetry-dynamic-versioning>=1.0.1",
+    "python-dotenv>=1.0.1",
     "setuptools>=61.0",
 ]
 build-backend = "poetry_dynamic_versioning.backend"
@@ -21,7 +22,7 @@ authors = ["Mauko Quiroga-Alvarado <mauko@redte.ch>"]
 license = "APGL-3.0"
 readme = "README.md"
 packages = [{ include = "zotero_qa", from = "src" }]
-include = ["src/**/*.so", "src/**/*.pyd"]
+include = ["src/**/*.so", "src/**/*.pyd", "src/**/*.dylib"]
 
 [tool.poetry.build]
 script = 'build.py'
@@ -36,6 +37,7 @@ langchain = "0.1.9"
 langchain-community = "0.0.24"
 python-dotenv = "1.0.1"
 pymupdf = "^1.23.26"
+ujson = "^5.9.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "24.2.0"
