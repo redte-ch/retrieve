@@ -24,7 +24,7 @@
         ],
         "include_dirs": [
             "src/zotero_qa",
-            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmpqnvh_yoo/.venv/lib/python3.11/site-packages/numpy/core/include"
+            "/Users/hyperion/.pyenv/versions/3.11.0/envs/zotero-3.11.0/lib/python3.11/site-packages/numpy/core/include"
         ],
         "language": "c++",
         "name": "src.zotero_qa._caching",
@@ -1586,13 +1586,22 @@ struct __pyx_opt_args_7cpython_11contextvars_get_value_no_default {
 /* "src/zotero_qa/_caching.pyx":14
  * from libcpp.string cimport string
  * 
- * ctypedef map[string, int] Cache_t             # <<<<<<<<<<<<<<
+ * ctypedef map[string, int] CacheItem_t             # <<<<<<<<<<<<<<
+ * ctypedef map[string, CacheItem_t] Cache_t
+ * 
+ */
+typedef std::map<std::string,int>  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t;
+
+/* "src/zotero_qa/_caching.pyx":15
+ * 
+ * ctypedef map[string, int] CacheItem_t
+ * ctypedef map[string, CacheItem_t] Cache_t             # <<<<<<<<<<<<<<
  * 
  * 
  */
-typedef std::map<std::string,int>  __pyx_t_3src_9zotero_qa_8_caching_Cache_t;
+typedef std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_t_3src_9zotero_qa_8_caching_Cache_t;
 
-/* "src/zotero_qa/_caching.pyx":17
+/* "src/zotero_qa/_caching.pyx":18
  * 
  * 
  * cdef public class Cache [object CyCache, type CyCache_t]:             # <<<<<<<<<<<<<<
@@ -1613,8 +1622,8 @@ __PYX_EXTERN_C DL_EXPORT(PyTypeObject) CyCache_t;
 struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache {
   void (*load)(struct CyCache *, int __pyx_skip_dispatch);
   void (*save)(struct CyCache *, int __pyx_skip_dispatch);
-  int (*get)(struct CyCache *, std::string, int __pyx_skip_dispatch);
-  void (*set)(struct CyCache *, std::string, int, int __pyx_skip_dispatch);
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*get)(struct CyCache *, std::string, int __pyx_skip_dispatch);
+  void (*set)(struct CyCache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch);
   PyBoolObject *(*has_key)(struct CyCache *, std::string, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *__pyx_vtabptr_3src_9zotero_qa_8_caching_Cache;
@@ -2121,6 +2130,9 @@ static PyObject *__Pyx_ImportDottedModule(PyObject *name, PyObject *parts_tuple)
 static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *name, PyObject *parts_tuple);
 #endif
 
+/* ImportFrom.proto */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
+
 /* FetchSharedCythonModule.proto */
 static PyObject *__Pyx_FetchSharedCythonABIModule(void);
 
@@ -2391,11 +2403,11 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* #### Code section: module_declarations ### */
 static CYTHON_INLINE double __pyx_f_7cpython_7complex_7complex_4real_real(PyComplexObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE double __pyx_f_7cpython_7complex_7complex_4imag_imag(PyComplexObject *__pyx_v_self); /* proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_v_value, int __pyx_skip_dispatch); /* proto*/
-PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from "cpython.version" */
 
@@ -2492,12 +2504,14 @@ PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *_
 /* Module declarations from "src.zotero_qa._caching" */
 static std::string __pyx_convert_string_from_py_std__in_string(PyObject *); /*proto*/
 static std::map<std::string,int>  __pyx_convert_map_from_py_std_3a__3a_string__and_int(PyObject *); /*proto*/
+static std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(PyObject *); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyObject_string_to_py_std__in_string(std::string const &); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyUnicode_string_to_py_std__in_string(std::string const &); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyStr_string_to_py_std__in_string(std::string const &); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyBytes_string_to_py_std__in_string(std::string const &); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyByteArray_string_to_py_std__in_string(std::string const &); /*proto*/
 static PyObject *__pyx_convert_map_to_py_std_3a__3a_string____int(std::map<std::string,int>  const &); /*proto*/
+static PyObject *__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  const &); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "src.zotero_qa._caching"
@@ -2509,16 +2523,18 @@ int __pyx_module_is_main_src__zotero_qa___caching = 0;
 static PyObject *__pyx_builtin_open;
 static PyObject *__pyx_builtin_TypeError;
 /* #### Code section: string_decls ### */
-static const char __pyx_k_r[] = "r";
-static const char __pyx_k_w[] = "w";
 static const char __pyx_k__2[] = "*";
+static const char __pyx_k__3[] = ".";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_os[] = "os";
-static const char __pyx_k__14[] = "?";
+static const char __pyx_k_rb[] = "rb";
+static const char __pyx_k_wb[] = "wb";
+static const char __pyx_k__15[] = "?";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_key[] = "key";
 static const char __pyx_k_set[] = "set";
 static const char __pyx_k_exit[] = "__exit__";
+static const char __pyx_k_json[] = "json";
 static const char __pyx_k_load[] = "load";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -2530,19 +2546,19 @@ static const char __pyx_k_self[] = "self";
 static const char __pyx_k_spec[] = "__spec__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_Cache[] = "Cache";
-static const char __pyx_k_dumps[] = "dumps";
 static const char __pyx_k_enter[] = "__enter__";
 static const char __pyx_k_items[] = "items";
-static const char __pyx_k_loads[] = "loads";
-static const char __pyx_k_ujson[] = "ujson";
 static const char __pyx_k_value[] = "value";
 static const char __pyx_k_write[] = "write";
+static const char __pyx_k_decode[] = "decode";
 static const char __pyx_k_enable[] = "enable";
+static const char __pyx_k_encode[] = "encode";
 static const char __pyx_k_exists[] = "exists";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_has_key[] = "has_key";
+static const char __pyx_k_msgspec[] = "msgspec";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_setstate[] = "__setstate__";
 static const char __pyx_k_Cache_get[] = "Cache.get";
@@ -2573,7 +2589,7 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *_
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct CyCache *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct CyCache *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct CyCache *__pyx_v_self, std::string __pyx_v_key); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_v_value); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value); /* proto */
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key); /* proto */
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(struct CyCache *__pyx_v_self); /* proto */
 static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
@@ -2718,13 +2734,15 @@ typedef struct {
   PyObject *__pyx_n_s_Cache_save;
   PyObject *__pyx_n_s_Cache_set;
   PyObject *__pyx_n_s_TypeError;
-  PyObject *__pyx_n_s__14;
+  PyObject *__pyx_n_s__15;
   PyObject *__pyx_n_s__2;
+  PyObject *__pyx_kp_u__3;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_cline_in_traceback;
+  PyObject *__pyx_n_s_decode;
   PyObject *__pyx_kp_u_disable;
-  PyObject *__pyx_n_s_dumps;
   PyObject *__pyx_kp_u_enable;
+  PyObject *__pyx_n_s_encode;
   PyObject *__pyx_n_s_enter;
   PyObject *__pyx_n_s_exists;
   PyObject *__pyx_n_s_exit;
@@ -2738,10 +2756,11 @@ typedef struct {
   PyObject *__pyx_kp_u_isenabled;
   PyObject *__pyx_n_s_items;
   PyObject *__pyx_n_s_iteritems;
+  PyObject *__pyx_n_s_json;
   PyObject *__pyx_n_s_key;
   PyObject *__pyx_n_s_load;
-  PyObject *__pyx_n_s_loads;
   PyObject *__pyx_n_s_main;
+  PyObject *__pyx_n_s_msgspec;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
   PyObject *__pyx_n_s_open;
@@ -2749,7 +2768,7 @@ typedef struct {
   PyObject *__pyx_n_s_path;
   PyObject *__pyx_n_s_pyx_state;
   PyObject *__pyx_n_s_pyx_vtable;
-  PyObject *__pyx_n_u_r;
+  PyObject *__pyx_n_u_rb;
   PyObject *__pyx_n_s_read;
   PyObject *__pyx_n_s_reduce;
   PyObject *__pyx_n_s_reduce_cython;
@@ -2764,22 +2783,21 @@ typedef struct {
   PyObject *__pyx_kp_s_src_zotero_qa__caching_pyx;
   PyObject *__pyx_kp_s_stringsource;
   PyObject *__pyx_n_s_test;
-  PyObject *__pyx_n_s_ujson;
   PyObject *__pyx_n_s_value;
-  PyObject *__pyx_n_u_w;
+  PyObject *__pyx_n_u_wb;
   PyObject *__pyx_n_s_write;
   PyObject *__pyx_tuple_;
-  PyObject *__pyx_tuple__3;
-  PyObject *__pyx_tuple__6;
-  PyObject *__pyx_tuple__8;
-  PyObject *__pyx_tuple__12;
-  PyObject *__pyx_codeobj__4;
+  PyObject *__pyx_tuple__4;
+  PyObject *__pyx_tuple__7;
+  PyObject *__pyx_tuple__9;
+  PyObject *__pyx_tuple__13;
   PyObject *__pyx_codeobj__5;
-  PyObject *__pyx_codeobj__7;
-  PyObject *__pyx_codeobj__9;
+  PyObject *__pyx_codeobj__6;
+  PyObject *__pyx_codeobj__8;
   PyObject *__pyx_codeobj__10;
   PyObject *__pyx_codeobj__11;
-  PyObject *__pyx_codeobj__13;
+  PyObject *__pyx_codeobj__12;
+  PyObject *__pyx_codeobj__14;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2836,13 +2854,15 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Cache_save);
   Py_CLEAR(clear_module_state->__pyx_n_s_Cache_set);
   Py_CLEAR(clear_module_state->__pyx_n_s_TypeError);
-  Py_CLEAR(clear_module_state->__pyx_n_s__14);
+  Py_CLEAR(clear_module_state->__pyx_n_s__15);
   Py_CLEAR(clear_module_state->__pyx_n_s__2);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__3);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
+  Py_CLEAR(clear_module_state->__pyx_n_s_decode);
   Py_CLEAR(clear_module_state->__pyx_kp_u_disable);
-  Py_CLEAR(clear_module_state->__pyx_n_s_dumps);
   Py_CLEAR(clear_module_state->__pyx_kp_u_enable);
+  Py_CLEAR(clear_module_state->__pyx_n_s_encode);
   Py_CLEAR(clear_module_state->__pyx_n_s_enter);
   Py_CLEAR(clear_module_state->__pyx_n_s_exists);
   Py_CLEAR(clear_module_state->__pyx_n_s_exit);
@@ -2856,10 +2876,11 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_isenabled);
   Py_CLEAR(clear_module_state->__pyx_n_s_items);
   Py_CLEAR(clear_module_state->__pyx_n_s_iteritems);
+  Py_CLEAR(clear_module_state->__pyx_n_s_json);
   Py_CLEAR(clear_module_state->__pyx_n_s_key);
   Py_CLEAR(clear_module_state->__pyx_n_s_load);
-  Py_CLEAR(clear_module_state->__pyx_n_s_loads);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
+  Py_CLEAR(clear_module_state->__pyx_n_s_msgspec);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_CLEAR(clear_module_state->__pyx_n_s_open);
@@ -2867,7 +2888,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_state);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_vtable);
-  Py_CLEAR(clear_module_state->__pyx_n_u_r);
+  Py_CLEAR(clear_module_state->__pyx_n_u_rb);
   Py_CLEAR(clear_module_state->__pyx_n_s_read);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
@@ -2882,22 +2903,21 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_s_src_zotero_qa__caching_pyx);
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ujson);
   Py_CLEAR(clear_module_state->__pyx_n_s_value);
-  Py_CLEAR(clear_module_state->__pyx_n_u_w);
+  Py_CLEAR(clear_module_state->__pyx_n_u_wb);
   Py_CLEAR(clear_module_state->__pyx_n_s_write);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
-  Py_CLEAR(clear_module_state->__pyx_tuple__3);
-  Py_CLEAR(clear_module_state->__pyx_tuple__6);
-  Py_CLEAR(clear_module_state->__pyx_tuple__8);
-  Py_CLEAR(clear_module_state->__pyx_tuple__12);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__4);
+  Py_CLEAR(clear_module_state->__pyx_tuple__4);
+  Py_CLEAR(clear_module_state->__pyx_tuple__7);
+  Py_CLEAR(clear_module_state->__pyx_tuple__9);
+  Py_CLEAR(clear_module_state->__pyx_tuple__13);
   Py_CLEAR(clear_module_state->__pyx_codeobj__5);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__7);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__9);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__6);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__8);
   Py_CLEAR(clear_module_state->__pyx_codeobj__10);
   Py_CLEAR(clear_module_state->__pyx_codeobj__11);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__13);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__12);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__14);
   return 0;
 }
 #endif
@@ -2932,13 +2952,15 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Cache_save);
   Py_VISIT(traverse_module_state->__pyx_n_s_Cache_set);
   Py_VISIT(traverse_module_state->__pyx_n_s_TypeError);
-  Py_VISIT(traverse_module_state->__pyx_n_s__14);
+  Py_VISIT(traverse_module_state->__pyx_n_s__15);
   Py_VISIT(traverse_module_state->__pyx_n_s__2);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__3);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
+  Py_VISIT(traverse_module_state->__pyx_n_s_decode);
   Py_VISIT(traverse_module_state->__pyx_kp_u_disable);
-  Py_VISIT(traverse_module_state->__pyx_n_s_dumps);
   Py_VISIT(traverse_module_state->__pyx_kp_u_enable);
+  Py_VISIT(traverse_module_state->__pyx_n_s_encode);
   Py_VISIT(traverse_module_state->__pyx_n_s_enter);
   Py_VISIT(traverse_module_state->__pyx_n_s_exists);
   Py_VISIT(traverse_module_state->__pyx_n_s_exit);
@@ -2952,10 +2974,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_isenabled);
   Py_VISIT(traverse_module_state->__pyx_n_s_items);
   Py_VISIT(traverse_module_state->__pyx_n_s_iteritems);
+  Py_VISIT(traverse_module_state->__pyx_n_s_json);
   Py_VISIT(traverse_module_state->__pyx_n_s_key);
   Py_VISIT(traverse_module_state->__pyx_n_s_load);
-  Py_VISIT(traverse_module_state->__pyx_n_s_loads);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
+  Py_VISIT(traverse_module_state->__pyx_n_s_msgspec);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_VISIT(traverse_module_state->__pyx_n_s_open);
@@ -2963,7 +2986,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_state);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_vtable);
-  Py_VISIT(traverse_module_state->__pyx_n_u_r);
+  Py_VISIT(traverse_module_state->__pyx_n_u_rb);
   Py_VISIT(traverse_module_state->__pyx_n_s_read);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
@@ -2978,22 +3001,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_s_src_zotero_qa__caching_pyx);
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ujson);
   Py_VISIT(traverse_module_state->__pyx_n_s_value);
-  Py_VISIT(traverse_module_state->__pyx_n_u_w);
+  Py_VISIT(traverse_module_state->__pyx_n_u_wb);
   Py_VISIT(traverse_module_state->__pyx_n_s_write);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
-  Py_VISIT(traverse_module_state->__pyx_tuple__3);
-  Py_VISIT(traverse_module_state->__pyx_tuple__6);
-  Py_VISIT(traverse_module_state->__pyx_tuple__8);
-  Py_VISIT(traverse_module_state->__pyx_tuple__12);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__4);
+  Py_VISIT(traverse_module_state->__pyx_tuple__4);
+  Py_VISIT(traverse_module_state->__pyx_tuple__7);
+  Py_VISIT(traverse_module_state->__pyx_tuple__9);
+  Py_VISIT(traverse_module_state->__pyx_tuple__13);
   Py_VISIT(traverse_module_state->__pyx_codeobj__5);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__7);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__9);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__6);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__8);
   Py_VISIT(traverse_module_state->__pyx_codeobj__10);
   Py_VISIT(traverse_module_state->__pyx_codeobj__11);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__13);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__12);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__14);
   return 0;
 }
 #endif
@@ -3130,13 +3152,15 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Cache_save __pyx_mstate_global->__pyx_n_s_Cache_save
 #define __pyx_n_s_Cache_set __pyx_mstate_global->__pyx_n_s_Cache_set
 #define __pyx_n_s_TypeError __pyx_mstate_global->__pyx_n_s_TypeError
-#define __pyx_n_s__14 __pyx_mstate_global->__pyx_n_s__14
+#define __pyx_n_s__15 __pyx_mstate_global->__pyx_n_s__15
 #define __pyx_n_s__2 __pyx_mstate_global->__pyx_n_s__2
+#define __pyx_kp_u__3 __pyx_mstate_global->__pyx_kp_u__3
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
+#define __pyx_n_s_decode __pyx_mstate_global->__pyx_n_s_decode
 #define __pyx_kp_u_disable __pyx_mstate_global->__pyx_kp_u_disable
-#define __pyx_n_s_dumps __pyx_mstate_global->__pyx_n_s_dumps
 #define __pyx_kp_u_enable __pyx_mstate_global->__pyx_kp_u_enable
+#define __pyx_n_s_encode __pyx_mstate_global->__pyx_n_s_encode
 #define __pyx_n_s_enter __pyx_mstate_global->__pyx_n_s_enter
 #define __pyx_n_s_exists __pyx_mstate_global->__pyx_n_s_exists
 #define __pyx_n_s_exit __pyx_mstate_global->__pyx_n_s_exit
@@ -3150,10 +3174,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_isenabled __pyx_mstate_global->__pyx_kp_u_isenabled
 #define __pyx_n_s_items __pyx_mstate_global->__pyx_n_s_items
 #define __pyx_n_s_iteritems __pyx_mstate_global->__pyx_n_s_iteritems
+#define __pyx_n_s_json __pyx_mstate_global->__pyx_n_s_json
 #define __pyx_n_s_key __pyx_mstate_global->__pyx_n_s_key
 #define __pyx_n_s_load __pyx_mstate_global->__pyx_n_s_load
-#define __pyx_n_s_loads __pyx_mstate_global->__pyx_n_s_loads
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
+#define __pyx_n_s_msgspec __pyx_mstate_global->__pyx_n_s_msgspec
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_kp_s_no_default___reduce___due_to_non __pyx_mstate_global->__pyx_kp_s_no_default___reduce___due_to_non
 #define __pyx_n_s_open __pyx_mstate_global->__pyx_n_s_open
@@ -3161,7 +3186,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_path __pyx_mstate_global->__pyx_n_s_path
 #define __pyx_n_s_pyx_state __pyx_mstate_global->__pyx_n_s_pyx_state
 #define __pyx_n_s_pyx_vtable __pyx_mstate_global->__pyx_n_s_pyx_vtable
-#define __pyx_n_u_r __pyx_mstate_global->__pyx_n_u_r
+#define __pyx_n_u_rb __pyx_mstate_global->__pyx_n_u_rb
 #define __pyx_n_s_read __pyx_mstate_global->__pyx_n_s_read
 #define __pyx_n_s_reduce __pyx_mstate_global->__pyx_n_s_reduce
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
@@ -3176,22 +3201,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_s_src_zotero_qa__caching_pyx __pyx_mstate_global->__pyx_kp_s_src_zotero_qa__caching_pyx
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
-#define __pyx_n_s_ujson __pyx_mstate_global->__pyx_n_s_ujson
 #define __pyx_n_s_value __pyx_mstate_global->__pyx_n_s_value
-#define __pyx_n_u_w __pyx_mstate_global->__pyx_n_u_w
+#define __pyx_n_u_wb __pyx_mstate_global->__pyx_n_u_wb
 #define __pyx_n_s_write __pyx_mstate_global->__pyx_n_s_write
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
-#define __pyx_tuple__3 __pyx_mstate_global->__pyx_tuple__3
-#define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
-#define __pyx_tuple__8 __pyx_mstate_global->__pyx_tuple__8
-#define __pyx_tuple__12 __pyx_mstate_global->__pyx_tuple__12
-#define __pyx_codeobj__4 __pyx_mstate_global->__pyx_codeobj__4
+#define __pyx_tuple__4 __pyx_mstate_global->__pyx_tuple__4
+#define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
+#define __pyx_tuple__9 __pyx_mstate_global->__pyx_tuple__9
+#define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
 #define __pyx_codeobj__5 __pyx_mstate_global->__pyx_codeobj__5
-#define __pyx_codeobj__7 __pyx_mstate_global->__pyx_codeobj__7
-#define __pyx_codeobj__9 __pyx_mstate_global->__pyx_codeobj__9
+#define __pyx_codeobj__6 __pyx_mstate_global->__pyx_codeobj__6
+#define __pyx_codeobj__8 __pyx_mstate_global->__pyx_codeobj__8
 #define __pyx_codeobj__10 __pyx_mstate_global->__pyx_codeobj__10
 #define __pyx_codeobj__11 __pyx_mstate_global->__pyx_codeobj__11
-#define __pyx_codeobj__13 __pyx_mstate_global->__pyx_codeobj__13
+#define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
+#define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
 /* #### Code section: module_code ### */
 
 /* "string.from_py":13
@@ -3443,6 +3467,187 @@ static std::map<std::string,int>  __pyx_convert_map_from_py_std_3a__3a_string__a
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("map.from_py.__pyx_convert_map_from_py_std_3a__3a_string__and_int", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_pretend_to_initialize(&__pyx_r);
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(PyObject *__pyx_v_o) {
+  std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_v_m;
+  PyObject *__pyx_v_key = NULL;
+  PyObject *__pyx_v_value = NULL;
+  std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_r;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  Py_ssize_t __pyx_t_3;
+  Py_ssize_t __pyx_t_4;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  std::string __pyx_t_9;
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_t_10;
+  std::pair<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_t_11;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t", 1);
+
+  /* "map.from_py":209
+ * cdef map[X,Y] __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(object o) except *:
+ *     cdef map[X,Y] m
+ *     if PY_MAJOR_VERSION < 3:             # <<<<<<<<<<<<<<
+ *         for key, value in o.iteritems():
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ */
+  __pyx_t_1 = (PY_MAJOR_VERSION < 3);
+  if (__pyx_t_1) {
+
+    /* "map.from_py":210
+ *     cdef map[X,Y] m
+ *     if PY_MAJOR_VERSION < 3:
+ *         for key, value in o.iteritems():             # <<<<<<<<<<<<<<
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ *     else:
+ */
+    __pyx_t_3 = 0;
+    if (unlikely(__pyx_v_o == Py_None)) {
+      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "iteritems");
+      __PYX_ERR(1, 210, __pyx_L1_error)
+    }
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_o, 0, __pyx_n_s_iteritems, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 210, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_XDECREF(__pyx_t_2);
+    __pyx_t_2 = __pyx_t_6;
+    __pyx_t_6 = 0;
+    while (1) {
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_4, &__pyx_t_3, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
+      if (unlikely(__pyx_t_8 == 0)) break;
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(1, 210, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_6);
+      __pyx_t_6 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
+      __pyx_t_7 = 0;
+
+      /* "map.from_py":211
+ *     if PY_MAJOR_VERSION < 3:
+ *         for key, value in o.iteritems():
+ *             m.insert(pair[X,Y](<X>key, <Y>value))             # <<<<<<<<<<<<<<
+ *     else:
+ *         for key, value in o.items():
+ */
+      __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 211, __pyx_L1_error)
+      __pyx_t_10 = __pyx_convert_map_from_py_std_3a__3a_string__and_int(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 211, __pyx_L1_error)
+      try {
+        __pyx_t_11 = std::pair<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t> (((std::string)__pyx_t_9), ((__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t)__pyx_t_10));
+      } catch(...) {
+        __Pyx_CppExn2PyErr();
+        __PYX_ERR(1, 211, __pyx_L1_error)
+      }
+      try {
+        __pyx_v_m.insert(__pyx_t_11);
+      } catch(...) {
+        __Pyx_CppExn2PyErr();
+        __PYX_ERR(1, 211, __pyx_L1_error)
+      }
+    }
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "map.from_py":209
+ * cdef map[X,Y] __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(object o) except *:
+ *     cdef map[X,Y] m
+ *     if PY_MAJOR_VERSION < 3:             # <<<<<<<<<<<<<<
+ *         for key, value in o.iteritems():
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ */
+    goto __pyx_L3;
+  }
+
+  /* "map.from_py":213
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ *     else:
+ *         for key, value in o.items():             # <<<<<<<<<<<<<<
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ *     return m
+ */
+  /*else*/ {
+    __pyx_t_4 = 0;
+    if (unlikely(__pyx_v_o == Py_None)) {
+      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
+      __PYX_ERR(1, 213, __pyx_L1_error)
+    }
+    __pyx_t_7 = __Pyx_dict_iterator(__pyx_v_o, 0, __pyx_n_s_items, (&__pyx_t_3), (&__pyx_t_5)); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 213, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_XDECREF(__pyx_t_2);
+    __pyx_t_2 = __pyx_t_7;
+    __pyx_t_7 = 0;
+    while (1) {
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_3, &__pyx_t_4, &__pyx_t_7, &__pyx_t_6, NULL, __pyx_t_5);
+      if (unlikely(__pyx_t_8 == 0)) break;
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(1, 213, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_7);
+      __pyx_t_7 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_6);
+      __pyx_t_6 = 0;
+
+      /* "map.from_py":214
+ *     else:
+ *         for key, value in o.items():
+ *             m.insert(pair[X,Y](<X>key, <Y>value))             # <<<<<<<<<<<<<<
+ *     return m
+ * 
+ */
+      __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 214, __pyx_L1_error)
+      __pyx_t_10 = __pyx_convert_map_from_py_std_3a__3a_string__and_int(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 214, __pyx_L1_error)
+      try {
+        __pyx_t_11 = std::pair<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t> (((std::string)__pyx_t_9), ((__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t)__pyx_t_10));
+      } catch(...) {
+        __Pyx_CppExn2PyErr();
+        __PYX_ERR(1, 214, __pyx_L1_error)
+      }
+      try {
+        __pyx_v_m.insert(__pyx_t_11);
+      } catch(...) {
+        __Pyx_CppExn2PyErr();
+        __PYX_ERR(1, 214, __pyx_L1_error)
+      }
+    }
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  }
+  __pyx_L3:;
+
+  /* "map.from_py":215
+ *         for key, value in o.items():
+ *             m.insert(pair[X,Y](<X>key, <Y>value))
+ *     return m             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_r = __pyx_v_m;
+  goto __pyx_L0;
+
+  /* "map.from_py":207
+ * 
+ * @cname("__pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t")
+ * cdef map[X,Y] __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(object o) except *:             # <<<<<<<<<<<<<<
+ *     cdef map[X,Y] m
+ *     if PY_MAJOR_VERSION < 3:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("map.from_py.__pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_pretend_to_initialize(&__pyx_r);
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_key);
@@ -3821,6 +4026,119 @@ static PyObject *__pyx_convert_map_to_py_std_3a__3a_string____int(std::map<std::
   return __pyx_r;
 }
 
+static PyObject *__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  const &__pyx_v_s) {
+  PyObject *__pyx_v_o = NULL;
+  std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t> ::value_type const *__pyx_v_key_value;
+  std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t> ::const_iterator __pyx_v_iter;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t", 1);
+
+  /* "map.to_py":238
+ * @cname("__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t")
+ * cdef object __pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(const map[X,Y]& s):
+ *     o = {}             # <<<<<<<<<<<<<<
+ *     cdef const map[X,Y].value_type *key_value
+ *     cdef map[X,Y].const_iterator iter = s.begin()
+ */
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 238, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_o = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "map.to_py":240
+ *     o = {}
+ *     cdef const map[X,Y].value_type *key_value
+ *     cdef map[X,Y].const_iterator iter = s.begin()             # <<<<<<<<<<<<<<
+ *     while iter != s.end():
+ *         key_value = &cython.operator.dereference(iter)
+ */
+  __pyx_v_iter = __pyx_v_s.begin();
+
+  /* "map.to_py":241
+ *     cdef const map[X,Y].value_type *key_value
+ *     cdef map[X,Y].const_iterator iter = s.begin()
+ *     while iter != s.end():             # <<<<<<<<<<<<<<
+ *         key_value = &cython.operator.dereference(iter)
+ *         o[key_value.first] = key_value.second
+ */
+  while (1) {
+    __pyx_t_2 = (__pyx_v_iter != __pyx_v_s.end());
+    if (!__pyx_t_2) break;
+
+    /* "map.to_py":242
+ *     cdef map[X,Y].const_iterator iter = s.begin()
+ *     while iter != s.end():
+ *         key_value = &cython.operator.dereference(iter)             # <<<<<<<<<<<<<<
+ *         o[key_value.first] = key_value.second
+ *         cython.operator.preincrement(iter)
+ */
+    __pyx_v_key_value = (&(*__pyx_v_iter));
+
+    /* "map.to_py":243
+ *     while iter != s.end():
+ *         key_value = &cython.operator.dereference(iter)
+ *         o[key_value.first] = key_value.second             # <<<<<<<<<<<<<<
+ *         cython.operator.preincrement(iter)
+ *     return o
+ */
+    __pyx_t_1 = __pyx_convert_map_to_py_std_3a__3a_string____int(__pyx_v_key_value->second); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 243, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key_value->first); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 243, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely((PyDict_SetItem(__pyx_v_o, __pyx_t_3, __pyx_t_1) < 0))) __PYX_ERR(1, 243, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "map.to_py":244
+ *         key_value = &cython.operator.dereference(iter)
+ *         o[key_value.first] = key_value.second
+ *         cython.operator.preincrement(iter)             # <<<<<<<<<<<<<<
+ *     return o
+ * 
+ */
+    (void)((++__pyx_v_iter));
+  }
+
+  /* "map.to_py":245
+ *         o[key_value.first] = key_value.second
+ *         cython.operator.preincrement(iter)
+ *     return o             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_o);
+  __pyx_r = __pyx_v_o;
+  goto __pyx_L0;
+
+  /* "map.to_py":237
+ * 
+ * @cname("__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t")
+ * cdef object __pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(const map[X,Y]& s):             # <<<<<<<<<<<<<<
+ *     o = {}
+ *     cdef const map[X,Y].value_type *key_value
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("map.to_py.__pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_o);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "cpython/complex.pxd":19
  * 
  *         @property
@@ -4114,7 +4432,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7cpython_11contextvars_get_value_no_defau
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":22
+/* "src/zotero_qa/_caching.pyx":23
  *     cdef public Cache_t cache
  * 
  *     def __cinit__(self, str path):             # <<<<<<<<<<<<<<
@@ -4158,12 +4476,12 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_1__cinit__(PyObject *__pyx_
           (void)__Pyx_Arg_NewRef_VARARGS(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__cinit__") < 0)) __PYX_ERR(0, 22, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__cinit__") < 0)) __PYX_ERR(0, 23, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -4174,7 +4492,7 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_1__cinit__(PyObject *__pyx_
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 22, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 23, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4188,7 +4506,7 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_1__cinit__(PyObject *__pyx_
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyUnicode_Type), 1, "path", 1))) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyUnicode_Type), 1, "path", 1))) __PYX_ERR(0, 23, __pyx_L1_error)
   __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(((struct CyCache *)__pyx_v_self), __pyx_v_path);
 
   /* function exit code */
@@ -4215,7 +4533,7 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 1);
 
-  /* "src/zotero_qa/_caching.pyx":23
+  /* "src/zotero_qa/_caching.pyx":24
  * 
  *     def __cinit__(self, str path):
  *         self.path = path             # <<<<<<<<<<<<<<
@@ -4228,22 +4546,22 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *_
   __Pyx_DECREF(__pyx_v_self->path);
   __pyx_v_self->path = __pyx_v_path;
 
-  /* "src/zotero_qa/_caching.pyx":24
+  /* "src/zotero_qa/_caching.pyx":25
  *     def __cinit__(self, str path):
  *         self.path = path
  *         self.cache = Cache_t()             # <<<<<<<<<<<<<<
  * 
- *     cpdef public void load(self):
+ *     cpdef void load(self):
  */
   try {
     __pyx_t_1 = __pyx_t_3src_9zotero_qa_8_caching_Cache_t();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 24, __pyx_L1_error)
+    __PYX_ERR(0, 25, __pyx_L1_error)
   }
   __pyx_v_self->cache = __PYX_STD_MOVE_IF_SUPPORTED(__pyx_t_1);
 
-  /* "src/zotero_qa/_caching.pyx":22
+  /* "src/zotero_qa/_caching.pyx":23
  *     cdef public Cache_t cache
  * 
  *     def __cinit__(self, str path):             # <<<<<<<<<<<<<<
@@ -4262,10 +4580,10 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *_
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":26
+/* "src/zotero_qa/_caching.pyx":27
  *         self.cache = Cache_t()
  * 
- *     cpdef public void load(self):             # <<<<<<<<<<<<<<
+ *     cpdef void load(self):             # <<<<<<<<<<<<<<
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):
  */
@@ -4277,7 +4595,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_f = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4292,7 +4610,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
   PyObject *__pyx_t_10 = NULL;
   PyObject *__pyx_t_11 = NULL;
   PyObject *__pyx_t_12 = NULL;
-  std::map<std::string,int>  __pyx_t_13;
+  std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __pyx_t_13;
   __pyx_t_3src_9zotero_qa_8_caching_Cache_t __pyx_t_14;
   PyObject *__pyx_t_15 = NULL;
   int __pyx_lineno = 0;
@@ -4308,7 +4626,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_load); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_load); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_3src_9zotero_qa_8_caching_5Cache_3load)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -4330,7 +4648,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
@@ -4351,19 +4669,19 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
     #endif
   }
 
-  /* "src/zotero_qa/_caching.pyx":28
- *     cpdef public void load(self):
+  /* "src/zotero_qa/_caching.pyx":29
+ *     cpdef void load(self):
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):             # <<<<<<<<<<<<<<
  *             self.save()
  *         else:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exists); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exists); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -4384,26 +4702,26 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_self->path};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_7 = (!__pyx_t_6);
   if (__pyx_t_7) {
 
-    /* "src/zotero_qa/_caching.pyx":29
+    /* "src/zotero_qa/_caching.pyx":30
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):
  *             self.save()             # <<<<<<<<<<<<<<
  *         else:
- *             with open(self.path, "r") as f:
+ *             with open(self.path, "rb") as f:
  */
-    ((struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self->__pyx_vtab)->save(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+    ((struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self->__pyx_vtab)->save(__pyx_v_self, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
 
-    /* "src/zotero_qa/_caching.pyx":28
- *     cpdef public void load(self):
+    /* "src/zotero_qa/_caching.pyx":29
+ *     cpdef void load(self):
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):             # <<<<<<<<<<<<<<
  *             self.save()
@@ -4412,29 +4730,29 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
     goto __pyx_L3;
   }
 
-  /* "src/zotero_qa/_caching.pyx":31
+  /* "src/zotero_qa/_caching.pyx":32
  *             self.save()
  *         else:
- *             with open(self.path, "r") as f:             # <<<<<<<<<<<<<<
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+ *             with open(self.path, "rb") as f:             # <<<<<<<<<<<<<<
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
  */
   /*else*/ {
     /*with:*/ {
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_v_self->path);
       __Pyx_GIVEREF(__pyx_v_self->path);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_self->path)) __PYX_ERR(0, 31, __pyx_L1_error);
-      __Pyx_INCREF(__pyx_n_u_r);
-      __Pyx_GIVEREF(__pyx_n_u_r);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_r)) __PYX_ERR(0, 31, __pyx_L1_error);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_self->path)) __PYX_ERR(0, 32, __pyx_L1_error);
+      __Pyx_INCREF(__pyx_n_u_rb);
+      __Pyx_GIVEREF(__pyx_n_u_rb);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_rb)) __PYX_ERR(0, 32, __pyx_L1_error);
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 31, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 32, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_4 = NULL;
       __pyx_t_5 = 0;
@@ -4454,7 +4772,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
         PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
         __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L4_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L4_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
@@ -4473,19 +4791,19 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
             __pyx_v_f = __pyx_t_3;
             __pyx_t_3 = 0;
 
-            /* "src/zotero_qa/_caching.pyx":32
+            /* "src/zotero_qa/_caching.pyx":33
  *         else:
- *             with open(self.path, "r") as f:
- *                 self.cache = Cache_t(ujson.loads(f.read()))             # <<<<<<<<<<<<<<
+ *             with open(self.path, "rb") as f:
+ *                 self.cache = Cache_t(json.decode(f.read()))             # <<<<<<<<<<<<<<
  * 
- *     cpdef public void save(self):
+ *     cpdef void save(self):
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ujson); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L8_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L8_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_loads); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L8_error)
+            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_decode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L8_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L8_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L8_error)
             __Pyx_GOTREF(__pyx_t_4);
             __pyx_t_12 = NULL;
             __pyx_t_5 = 0;
@@ -4505,7 +4823,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
               PyObject *__pyx_callargs[2] = {__pyx_t_12, NULL};
               __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
               __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-              if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L8_error)
+              if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L8_error)
               __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             }
@@ -4528,25 +4846,25 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
               __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
               __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
               __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L8_error)
+              if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L8_error)
               __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             }
-            __pyx_t_13 = __pyx_convert_map_from_py_std_3a__3a_string__and_int(__pyx_t_3); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L8_error)
+            __pyx_t_13 = __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(__pyx_t_3); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 33, __pyx_L8_error)
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             try {
               __pyx_t_14 = __pyx_t_3src_9zotero_qa_8_caching_Cache_t(__pyx_t_13);
             } catch(...) {
               __Pyx_CppExn2PyErr();
-              __PYX_ERR(0, 32, __pyx_L8_error)
+              __PYX_ERR(0, 33, __pyx_L8_error)
             }
             __pyx_v_self->cache = __PYX_STD_MOVE_IF_SUPPORTED(__pyx_t_14);
 
-            /* "src/zotero_qa/_caching.pyx":31
+            /* "src/zotero_qa/_caching.pyx":32
  *             self.save()
  *         else:
- *             with open(self.path, "r") as f:             # <<<<<<<<<<<<<<
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+ *             with open(self.path, "rb") as f:             # <<<<<<<<<<<<<<
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
  */
           }
@@ -4562,20 +4880,20 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           /*except:*/ {
             __Pyx_AddTraceback("src.zotero_qa._caching.Cache.load", __pyx_clineno, __pyx_lineno, __pyx_filename);
-            if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 31, __pyx_L10_except_error)
+            if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 32, __pyx_L10_except_error)
             __Pyx_XGOTREF(__pyx_t_3);
             __Pyx_XGOTREF(__pyx_t_1);
             __Pyx_XGOTREF(__pyx_t_2);
-            __pyx_t_4 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L10_except_error)
+            __pyx_t_4 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L10_except_error)
             __Pyx_GOTREF(__pyx_t_4);
             __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_4, NULL);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 31, __pyx_L10_except_error)
+            if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 32, __pyx_L10_except_error)
             __Pyx_GOTREF(__pyx_t_15);
             __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_15);
             __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-            if (__pyx_t_7 < 0) __PYX_ERR(0, 31, __pyx_L10_except_error)
+            if (__pyx_t_7 < 0) __PYX_ERR(0, 32, __pyx_L10_except_error)
             __pyx_t_6 = (!__pyx_t_7);
             if (unlikely(__pyx_t_6)) {
               __Pyx_GIVEREF(__pyx_t_3);
@@ -4583,7 +4901,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
               __Pyx_XGIVEREF(__pyx_t_2);
               __Pyx_ErrRestoreWithState(__pyx_t_3, __pyx_t_1, __pyx_t_2);
               __pyx_t_3 = 0; __pyx_t_1 = 0; __pyx_t_2 = 0; 
-              __PYX_ERR(0, 31, __pyx_L10_except_error)
+              __PYX_ERR(0, 32, __pyx_L10_except_error)
             }
             __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4609,7 +4927,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
           if (__pyx_t_8) {
             __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple_, NULL);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 31, __pyx_L1_error)
+            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 32, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_11);
             __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
           }
@@ -4626,10 +4944,10 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self,
   }
   __pyx_L3:;
 
-  /* "src/zotero_qa/_caching.pyx":26
+  /* "src/zotero_qa/_caching.pyx":27
  *         self.cache = Cache_t()
  * 
- *     cpdef public void load(self):             # <<<<<<<<<<<<<<
+ *     cpdef void load(self):             # <<<<<<<<<<<<<<
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):
  */
@@ -4699,8 +5017,8 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct CyCache 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("load", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4717,12 +5035,12 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct CyCache 
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":34
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+/* "src/zotero_qa/_caching.pyx":35
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
- *     cpdef public void save(self):             # <<<<<<<<<<<<<<
+ *     cpdef void save(self):             # <<<<<<<<<<<<<<
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:
+ *         with open(self.path, "wb") as f:
  */
 
 static PyObject *__pyx_pw_3src_9zotero_qa_8_caching_5Cache_5save(PyObject *__pyx_v_self, 
@@ -4732,7 +5050,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_f = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4762,7 +5080,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_save); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_save); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_3src_9zotero_qa_8_caching_5Cache_5save)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -4784,7 +5102,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
@@ -4805,28 +5123,28 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
     #endif
   }
 
-  /* "src/zotero_qa/_caching.pyx":36
- *     cpdef public void save(self):
+  /* "src/zotero_qa/_caching.pyx":37
+ *     cpdef void save(self):
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:             # <<<<<<<<<<<<<<
- *             f.write(ujson.dumps(self.cache))
+ *         with open(self.path, "wb") as f:             # <<<<<<<<<<<<<<
+ *             f.write(json.encode(self.cache))
  * 
  */
   /*with:*/ {
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_v_self->path);
     __Pyx_GIVEREF(__pyx_v_self->path);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_self->path)) __PYX_ERR(0, 36, __pyx_L1_error);
-    __Pyx_INCREF(__pyx_n_u_w);
-    __Pyx_GIVEREF(__pyx_n_u_w);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_w)) __PYX_ERR(0, 36, __pyx_L1_error);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_self->path)) __PYX_ERR(0, 37, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_n_u_wb);
+    __Pyx_GIVEREF(__pyx_n_u_wb);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_wb)) __PYX_ERR(0, 37, __pyx_L1_error);
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -4846,7 +5164,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L3_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -4865,21 +5183,21 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
           __pyx_v_f = __pyx_t_3;
           __pyx_t_3 = 0;
 
-          /* "src/zotero_qa/_caching.pyx":37
+          /* "src/zotero_qa/_caching.pyx":38
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:
- *             f.write(ujson.dumps(self.cache))             # <<<<<<<<<<<<<<
+ *         with open(self.path, "wb") as f:
+ *             f.write(json.encode(self.cache))             # <<<<<<<<<<<<<<
  * 
- *     cpdef public int get(self, string key):
+ *     cpdef CacheItem_t get(self, string key):
  */
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_write); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_write); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ujson); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L7_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_json); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_dumps); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 37, __pyx_L7_error)
+          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_encode); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 38, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_10);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_4 = __pyx_convert_map_to_py_std_3a__3a_string____int(__pyx_v_self->cache); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L7_error)
+          __pyx_t_4 = __pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(__pyx_v_self->cache); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_4);
           __pyx_t_11 = NULL;
           __pyx_t_5 = 0;
@@ -4900,7 +5218,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
             __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
             __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L7_error)
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           }
@@ -4923,17 +5241,17 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
             __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L7_error)
+            if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "src/zotero_qa/_caching.pyx":36
- *     cpdef public void save(self):
+          /* "src/zotero_qa/_caching.pyx":37
+ *     cpdef void save(self):
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:             # <<<<<<<<<<<<<<
- *             f.write(ujson.dumps(self.cache))
+ *         with open(self.path, "wb") as f:             # <<<<<<<<<<<<<<
+ *             f.write(json.encode(self.cache))
  * 
  */
         }
@@ -4950,20 +5268,20 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("src.zotero_qa._caching.Cache.save", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_1) < 0) __PYX_ERR(0, 36, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_2, &__pyx_t_1) < 0) __PYX_ERR(0, 37, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_1);
-          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 36, __pyx_L9_except_error)
+          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 37, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 36, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 37, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (__pyx_t_13 < 0) __PYX_ERR(0, 36, __pyx_L9_except_error)
+          if (__pyx_t_13 < 0) __PYX_ERR(0, 37, __pyx_L9_except_error)
           __pyx_t_14 = (!__pyx_t_13);
           if (unlikely(__pyx_t_14)) {
             __Pyx_GIVEREF(__pyx_t_3);
@@ -4971,7 +5289,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
             __Pyx_XGIVEREF(__pyx_t_1);
             __Pyx_ErrRestoreWithState(__pyx_t_3, __pyx_t_2, __pyx_t_1);
             __pyx_t_3 = 0; __pyx_t_2 = 0; __pyx_t_1 = 0; 
-            __PYX_ERR(0, 36, __pyx_L9_except_error)
+            __PYX_ERR(0, 37, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4997,7 +5315,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
         if (__pyx_t_6) {
           __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple_, NULL);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 36, __pyx_L1_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 37, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         }
@@ -5012,12 +5330,12 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self,
     __pyx_L16:;
   }
 
-  /* "src/zotero_qa/_caching.pyx":34
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+  /* "src/zotero_qa/_caching.pyx":35
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
- *     cpdef public void save(self):             # <<<<<<<<<<<<<<
+ *     cpdef void save(self):             # <<<<<<<<<<<<<<
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:
+ *         with open(self.path, "wb") as f:
  */
 
   /* function exit code */
@@ -5086,8 +5404,8 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct CyCache 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("save", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(__pyx_v_self, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5104,10 +5422,10 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct CyCache 
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":39
- *             f.write(ujson.dumps(self.cache))
+/* "src/zotero_qa/_caching.pyx":40
+ *             f.write(json.encode(self.cache))
  * 
- *     cpdef public int get(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef CacheItem_t get(self, string key):             # <<<<<<<<<<<<<<
  *         """Retrieve value from cache."""
  *         if self.has_key(key):
  */
@@ -5119,8 +5437,8 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
-  int __pyx_r;
+static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5128,7 +5446,8 @@ int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, s
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   int __pyx_t_6;
-  int __pyx_t_7;
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_t_7;
+  int __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5142,10 +5461,10 @@ int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, s
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_3src_9zotero_qa_8_caching_5Cache_7get)) {
-        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5167,13 +5486,13 @@ int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, s
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
+        __pyx_t_7 = __pyx_convert_map_from_py_std_3a__3a_string__and_int(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_r = __pyx_t_6;
+        __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         goto __pyx_L0;
       }
@@ -5190,52 +5509,58 @@ int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, s
     #endif
   }
 
-  /* "src/zotero_qa/_caching.pyx":41
- *     cpdef public int get(self, string key):
+  /* "src/zotero_qa/_caching.pyx":42
+ *     cpdef CacheItem_t get(self, string key):
  *         """Retrieve value from cache."""
  *         if self.has_key(key):             # <<<<<<<<<<<<<<
  *             return self.cache[key]
- *         return -1
+ *         return CacheItem_t()
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__pyx_t_7) {
+  if (__pyx_t_8) {
 
-    /* "src/zotero_qa/_caching.pyx":42
+    /* "src/zotero_qa/_caching.pyx":43
  *         """Retrieve value from cache."""
  *         if self.has_key(key):
  *             return self.cache[key]             # <<<<<<<<<<<<<<
- *         return -1
+ *         return CacheItem_t()
  * 
  */
     __pyx_r = (__pyx_v_self->cache[__pyx_v_key]);
     goto __pyx_L0;
 
-    /* "src/zotero_qa/_caching.pyx":41
- *     cpdef public int get(self, string key):
+    /* "src/zotero_qa/_caching.pyx":42
+ *     cpdef CacheItem_t get(self, string key):
  *         """Retrieve value from cache."""
  *         if self.has_key(key):             # <<<<<<<<<<<<<<
  *             return self.cache[key]
- *         return -1
+ *         return CacheItem_t()
  */
   }
 
-  /* "src/zotero_qa/_caching.pyx":43
+  /* "src/zotero_qa/_caching.pyx":44
  *         if self.has_key(key):
  *             return self.cache[key]
- *         return -1             # <<<<<<<<<<<<<<
+ *         return CacheItem_t()             # <<<<<<<<<<<<<<
  * 
- *     cpdef public void set(self, string key, int value):
+ *     cpdef void set(self, string key, CacheItem_t value):
  */
-  __pyx_r = -1;
+  try {
+    __pyx_t_7 = __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t();
+  } catch(...) {
+    __Pyx_CppExn2PyErr();
+    __PYX_ERR(0, 44, __pyx_L1_error)
+  }
+  __pyx_r = __pyx_t_7;
   goto __pyx_L0;
 
-  /* "src/zotero_qa/_caching.pyx":39
- *             f.write(ujson.dumps(self.cache))
+  /* "src/zotero_qa/_caching.pyx":40
+ *             f.write(json.encode(self.cache))
  * 
- *     cpdef public int get(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef CacheItem_t get(self, string key):             # <<<<<<<<<<<<<<
  *         """Retrieve value from cache."""
  *         if self.has_key(key):
  */
@@ -5248,7 +5573,7 @@ int __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, s
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("src.zotero_qa._caching.Cache.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
+  __Pyx_pretend_to_initialize(&__pyx_r);
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -5308,23 +5633,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get") < 0)) __PYX_ERR(0, 39, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get") < 0)) __PYX_ERR(0, 40, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L3_error)
+    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 39, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 40, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5354,15 +5679,15 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct CyCache *__pyx_v_self, std::string __pyx_v_key) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(__pyx_v_self, __pyx_v_key, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(__pyx_v_self, __pyx_v_key, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_map_to_py_std_3a__3a_string____int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5379,10 +5704,10 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct CyCache *
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":45
- *         return -1
+/* "src/zotero_qa/_caching.pyx":46
+ *         return CacheItem_t()
  * 
- *     cpdef public void set(self, string key, int value):             # <<<<<<<<<<<<<<
+ *     cpdef void set(self, string key, CacheItem_t value):             # <<<<<<<<<<<<<<
  *         """Set value in cache and update the JSON file."""
  *         self.cache[key] = value
  */
@@ -5394,7 +5719,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_v_value, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch) {
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5416,12 +5741,12 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, 
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_3src_9zotero_qa_8_caching_5Cache_9set)) {
-        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
+        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
+        __pyx_t_4 = __pyx_convert_map_to_py_std_3a__3a_string____int(__pyx_v_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -5444,7 +5769,7 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, 
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
@@ -5465,19 +5790,19 @@ void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, 
     #endif
   }
 
-  /* "src/zotero_qa/_caching.pyx":47
- *     cpdef public void set(self, string key, int value):
+  /* "src/zotero_qa/_caching.pyx":48
+ *     cpdef void set(self, string key, CacheItem_t value):
  *         """Set value in cache and update the JSON file."""
  *         self.cache[key] = value             # <<<<<<<<<<<<<<
  * 
- *     cpdef public bool has_key(self, string key):
+ *     cpdef bool has_key(self, string key):
  */
   (__pyx_v_self->cache[__pyx_v_key]) = __pyx_v_value;
 
-  /* "src/zotero_qa/_caching.pyx":45
- *         return -1
+  /* "src/zotero_qa/_caching.pyx":46
+ *         return CacheItem_t()
  * 
- *     cpdef public void set(self, string key, int value):             # <<<<<<<<<<<<<<
+ *     cpdef void set(self, string key, CacheItem_t value):             # <<<<<<<<<<<<<<
  *         """Set value in cache and update the JSON file."""
  *         self.cache[key] = value
  */
@@ -5514,7 +5839,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
   std::string __pyx_v_key;
-  int __pyx_v_value;
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -5553,7 +5878,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -5561,14 +5886,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("set", 1, 2, 2, 1); __PYX_ERR(0, 45, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("set", 1, 2, 2, 1); __PYX_ERR(0, 46, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "set") < 0)) __PYX_ERR(0, 45, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "set") < 0)) __PYX_ERR(0, 46, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -5576,12 +5901,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
     }
-    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
-    __pyx_v_value = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_value == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
+    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
+    __pyx_v_value = __pyx_convert_map_from_py_std_3a__3a_string__and_int(values[1]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 45, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("set", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 46, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5595,7 +5920,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(((struct CyCache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key), __pyx_v_value);
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(((struct CyCache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_value));
 
   /* function exit code */
   {
@@ -5608,7 +5933,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_v_value) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5617,8 +5942,8 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(__pyx_v_self, __pyx_v_key, __pyx_v_value, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(__pyx_v_self, __pyx_v_key, __pyx_v_value, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5635,10 +5960,10 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":49
+/* "src/zotero_qa/_caching.pyx":50
  *         self.cache[key] = value
  * 
- *     cpdef public bool has_key(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef bool has_key(self, string key):             # <<<<<<<<<<<<<<
  *         """Check if a key is already cached."""
  *         return self.cache.find(key) != self.cache.end()
  */
@@ -5650,7 +5975,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
+static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
   PyBoolObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5672,11 +5997,11 @@ PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_3src_9zotero_qa_8_caching_5Cache_11has_key)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
-        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+        __pyx_t_3 = __pyx_convert_PyUnicode_string_to_py_std__in_string(__pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5698,11 +6023,11 @@ PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *_
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 49, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_4bool_bool))))) __PYX_ERR(0, 50, __pyx_L1_error)
         __pyx_r = ((PyBoolObject *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5721,23 +6046,23 @@ PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *_
     #endif
   }
 
-  /* "src/zotero_qa/_caching.pyx":51
- *     cpdef public bool has_key(self, string key):
+  /* "src/zotero_qa/_caching.pyx":52
+ *     cpdef bool has_key(self, string key):
  *         """Check if a key is already cached."""
  *         return self.cache.find(key) != self.cache.end()             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cache.find(__pyx_v_key) != __pyx_v_self->cache.end())); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cache.find(__pyx_v_key) != __pyx_v_self->cache.end())); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_7cpython_4bool_bool)))) __PYX_ERR(0, 52, __pyx_L1_error)
   __pyx_r = ((PyBoolObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "src/zotero_qa/_caching.pyx":49
+  /* "src/zotero_qa/_caching.pyx":50
  *         self.cache[key] = value
  * 
- *     cpdef public bool has_key(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef bool has_key(self, string key):             # <<<<<<<<<<<<<<
  *         """Check if a key is already cached."""
  *         return self.cache.find(key) != self.cache.end()
  */
@@ -5811,23 +6136,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "has_key") < 0)) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "has_key") < 0)) __PYX_ERR(0, 50, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+    __pyx_v_key = __pyx_convert_string_from_py_std__in_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("has_key", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 49, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("has_key", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 50, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5863,7 +6188,7 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("has_key", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(__pyx_v_self, __pyx_v_key, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(__pyx_v_self, __pyx_v_key, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5880,7 +6205,7 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCa
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":19
+/* "src/zotero_qa/_caching.pyx":20
  * cdef public class Cache [object CyCache, type CyCache_t]:
  *     """A simple JSON cache for storing PDFs chuck sizes."""
  *     cdef public str path             # <<<<<<<<<<<<<<
@@ -5942,7 +6267,7 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct CyCac
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 1);
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_value))) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_value))) __PYX_ERR(0, 20, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -5994,7 +6319,7 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(struct CyCac
   return __pyx_r;
 }
 
-/* "src/zotero_qa/_caching.pyx":20
+/* "src/zotero_qa/_caching.pyx":21
  *     """A simple JSON cache for storing PDFs chuck sizes."""
  *     cdef public str path
  *     cdef public Cache_t cache             # <<<<<<<<<<<<<<
@@ -6026,7 +6351,7 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_map_to_py_std_3a__3a_string____int(__pyx_v_self->cache); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_map_to_py_std_3a__3a_string______pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(__pyx_v_self->cache); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6064,7 +6389,7 @@ static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(struct CyCa
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __pyx_t_1 = __pyx_convert_map_from_py_std_3a__3a_string__and_int(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_map_from_py_std_3a__3a_string__and___pyx_t_3src_9zotero_qa_8_caching_CacheItem_t(__pyx_v_value); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
   __pyx_v_self->cache = __PYX_STD_MOVE_IF_SUPPORTED(__pyx_t_1);
 
   /* function exit code */
@@ -6501,13 +6826,15 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Cache_save, __pyx_k_Cache_save, sizeof(__pyx_k_Cache_save), 0, 0, 1, 1},
     {&__pyx_n_s_Cache_set, __pyx_k_Cache_set, sizeof(__pyx_k_Cache_set), 0, 0, 1, 1},
     {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-    {&__pyx_n_s__14, __pyx_k__14, sizeof(__pyx_k__14), 0, 0, 1, 1},
+    {&__pyx_n_s__15, __pyx_k__15, sizeof(__pyx_k__15), 0, 0, 1, 1},
     {&__pyx_n_s__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 0, 1, 1},
+    {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
+    {&__pyx_n_s_decode, __pyx_k_decode, sizeof(__pyx_k_decode), 0, 0, 1, 1},
     {&__pyx_kp_u_disable, __pyx_k_disable, sizeof(__pyx_k_disable), 0, 1, 0, 0},
-    {&__pyx_n_s_dumps, __pyx_k_dumps, sizeof(__pyx_k_dumps), 0, 0, 1, 1},
     {&__pyx_kp_u_enable, __pyx_k_enable, sizeof(__pyx_k_enable), 0, 1, 0, 0},
+    {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
     {&__pyx_n_s_enter, __pyx_k_enter, sizeof(__pyx_k_enter), 0, 0, 1, 1},
     {&__pyx_n_s_exists, __pyx_k_exists, sizeof(__pyx_k_exists), 0, 0, 1, 1},
     {&__pyx_n_s_exit, __pyx_k_exit, sizeof(__pyx_k_exit), 0, 0, 1, 1},
@@ -6521,10 +6848,11 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_isenabled, __pyx_k_isenabled, sizeof(__pyx_k_isenabled), 0, 1, 0, 0},
     {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
     {&__pyx_n_s_iteritems, __pyx_k_iteritems, sizeof(__pyx_k_iteritems), 0, 0, 1, 1},
+    {&__pyx_n_s_json, __pyx_k_json, sizeof(__pyx_k_json), 0, 0, 1, 1},
     {&__pyx_n_s_key, __pyx_k_key, sizeof(__pyx_k_key), 0, 0, 1, 1},
     {&__pyx_n_s_load, __pyx_k_load, sizeof(__pyx_k_load), 0, 0, 1, 1},
-    {&__pyx_n_s_loads, __pyx_k_loads, sizeof(__pyx_k_loads), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+    {&__pyx_n_s_msgspec, __pyx_k_msgspec, sizeof(__pyx_k_msgspec), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
     {&__pyx_n_s_open, __pyx_k_open, sizeof(__pyx_k_open), 0, 0, 1, 1},
@@ -6532,7 +6860,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_path, __pyx_k_path, sizeof(__pyx_k_path), 0, 0, 1, 1},
     {&__pyx_n_s_pyx_state, __pyx_k_pyx_state, sizeof(__pyx_k_pyx_state), 0, 0, 1, 1},
     {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
-    {&__pyx_n_u_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 1, 0, 1},
+    {&__pyx_n_u_rb, __pyx_k_rb, sizeof(__pyx_k_rb), 0, 1, 0, 1},
     {&__pyx_n_s_read, __pyx_k_read, sizeof(__pyx_k_read), 0, 0, 1, 1},
     {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
@@ -6547,9 +6875,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_k_src_zotero_qa__caching_pyx, sizeof(__pyx_k_src_zotero_qa__caching_pyx), 0, 0, 1, 0},
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-    {&__pyx_n_s_ujson, __pyx_k_ujson, sizeof(__pyx_k_ujson), 0, 0, 1, 1},
     {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
-    {&__pyx_n_u_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 1, 0, 1},
+    {&__pyx_n_u_wb, __pyx_k_wb, sizeof(__pyx_k_wb), 0, 1, 0, 1},
     {&__pyx_n_s_write, __pyx_k_write, sizeof(__pyx_k_write), 0, 0, 1, 1},
     {0, 0, 0, 0, 0, 0, 0}
   };
@@ -6557,7 +6884,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 32, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -6569,77 +6896,77 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "src/zotero_qa/_caching.pyx":31
+  /* "src/zotero_qa/_caching.pyx":32
  *             self.save()
  *         else:
- *             with open(self.path, "r") as f:             # <<<<<<<<<<<<<<
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+ *             with open(self.path, "rb") as f:             # <<<<<<<<<<<<<<
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "src/zotero_qa/_caching.pyx":26
+  /* "src/zotero_qa/_caching.pyx":27
  *         self.cache = Cache_t()
  * 
- *     cpdef public void load(self):             # <<<<<<<<<<<<<<
+ *     cpdef void load(self):             # <<<<<<<<<<<<<<
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_load, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_load, 27, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 27, __pyx_L1_error)
 
-  /* "src/zotero_qa/_caching.pyx":34
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+  /* "src/zotero_qa/_caching.pyx":35
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
- *     cpdef public void save(self):             # <<<<<<<<<<<<<<
+ *     cpdef void save(self):             # <<<<<<<<<<<<<<
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:
+ *         with open(self.path, "wb") as f:
  */
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_save, 34, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_save, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 35, __pyx_L1_error)
 
-  /* "src/zotero_qa/_caching.pyx":39
- *             f.write(ujson.dumps(self.cache))
+  /* "src/zotero_qa/_caching.pyx":40
+ *             f.write(json.encode(self.cache))
  * 
- *     cpdef public int get(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef CacheItem_t get(self, string key):             # <<<<<<<<<<<<<<
  *         """Retrieve value from cache."""
  *         if self.has_key(key):
  */
-  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_get, 39, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_get, 40, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 40, __pyx_L1_error)
 
-  /* "src/zotero_qa/_caching.pyx":45
- *         return -1
+  /* "src/zotero_qa/_caching.pyx":46
+ *         return CacheItem_t()
  * 
- *     cpdef public void set(self, string key, int value):             # <<<<<<<<<<<<<<
+ *     cpdef void set(self, string key, CacheItem_t value):             # <<<<<<<<<<<<<<
  *         """Set value in cache and update the JSON file."""
  *         self.cache[key] = value
  */
-  __pyx_tuple__8 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_set, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_set, 46, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 46, __pyx_L1_error)
 
-  /* "src/zotero_qa/_caching.pyx":49
+  /* "src/zotero_qa/_caching.pyx":50
  *         self.cache[key] = value
  * 
- *     cpdef public bool has_key(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef bool has_key(self, string key):             # <<<<<<<<<<<<<<
  *         """Check if a key is already cached."""
  *         return self.cache.find(key) != self.cache.end()
  */
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_has_key, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_zotero_qa__caching_pyx, __pyx_n_s_has_key, 50, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 50, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(1, 1, __pyx_L1_error)
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -6647,10 +6974,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -6714,19 +7041,19 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtabptr_3src_9zotero_qa_8_caching_Cache = &__pyx_vtable_3src_9zotero_qa_8_caching_Cache;
   __pyx_vtable_3src_9zotero_qa_8_caching_Cache.load = (void (*)(struct CyCache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_load;
   __pyx_vtable_3src_9zotero_qa_8_caching_Cache.save = (void (*)(struct CyCache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_save;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.get = (int (*)(struct CyCache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_get;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.set = (void (*)(struct CyCache *, std::string, int, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_set;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.get = (__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*)(struct CyCache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_get;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.set = (void (*)(struct CyCache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_set;
   __pyx_vtable_3src_9zotero_qa_8_caching_Cache.has_key = (PyBoolObject *(*)(struct CyCache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &CyCache_t_spec, NULL); if (unlikely(!__pyx_ptype_3src_9zotero_qa_8_caching_Cache)) __PYX_ERR(0, 17, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&CyCache_t_spec, __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &CyCache_t_spec, NULL); if (unlikely(!__pyx_ptype_3src_9zotero_qa_8_caching_Cache)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&CyCache_t_spec, __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #else
   __pyx_ptype_3src_9zotero_qa_8_caching_Cache = &CyCache_t;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_3src_9zotero_qa_8_caching_Cache->tp_print = 0;
@@ -6736,13 +7063,13 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_ptype_3src_9zotero_qa_8_caching_Cache->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_vtabptr_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_vtabptr_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Cache, (PyObject *) __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Cache, (PyObject *) __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #endif
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -6966,6 +7293,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec__caching(PyObject *__pyx_pyinit_mo
   #endif
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -7082,11 +7410,11 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "src/zotero_qa/_caching.pyx":6
- * # distutils: language = c++
+ * # distutils: language=c++
  * 
  * import os             # <<<<<<<<<<<<<<
  * 
- * import ujson
+ * from msgspec import json
  */
   __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_os, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -7096,78 +7424,87 @@ if (!__Pyx_RefNanny) {
   /* "src/zotero_qa/_caching.pyx":8
  * import os
  * 
- * import ujson             # <<<<<<<<<<<<<<
+ * from msgspec import json             # <<<<<<<<<<<<<<
  * 
  * from cpython cimport bool
  */
-  __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_ujson, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ujson, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_INCREF(__pyx_n_s_json);
+  __Pyx_GIVEREF(__pyx_n_s_json);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_json)) __PYX_ERR(0, 8, __pyx_L1_error);
+  __pyx_t_3 = __Pyx_Import(__pyx_n_s_msgspec, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_json, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "src/zotero_qa/_caching.pyx":26
+  /* "src/zotero_qa/_caching.pyx":27
  *         self.cache = Cache_t()
  * 
- *     cpdef public void load(self):             # <<<<<<<<<<<<<<
+ *     cpdef void load(self):             # <<<<<<<<<<<<<<
  *         """Load or create the cache from/to disk."""
  *         if not os.path.exists(self.path):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_3load, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_load, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_load, __pyx_t_2) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_3load, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_load, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_load, __pyx_t_3) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
 
-  /* "src/zotero_qa/_caching.pyx":34
- *                 self.cache = Cache_t(ujson.loads(f.read()))
+  /* "src/zotero_qa/_caching.pyx":35
+ *                 self.cache = Cache_t(json.decode(f.read()))
  * 
- *     cpdef public void save(self):             # <<<<<<<<<<<<<<
+ *     cpdef void save(self):             # <<<<<<<<<<<<<<
  *         """Save the cache to disk."""
- *         with open(self.path, "w") as f:
+ *         with open(self.path, "wb") as f:
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_5save, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_save, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_save, __pyx_t_2) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_5save, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_save, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_save, __pyx_t_3) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
 
-  /* "src/zotero_qa/_caching.pyx":39
- *             f.write(ujson.dumps(self.cache))
+  /* "src/zotero_qa/_caching.pyx":40
+ *             f.write(json.encode(self.cache))
  * 
- *     cpdef public int get(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef CacheItem_t get(self, string key):             # <<<<<<<<<<<<<<
  *         """Retrieve value from cache."""
  *         if self.has_key(key):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_7get, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_get, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_get, __pyx_t_2) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_7get, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_get, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_get, __pyx_t_3) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
 
-  /* "src/zotero_qa/_caching.pyx":45
- *         return -1
+  /* "src/zotero_qa/_caching.pyx":46
+ *         return CacheItem_t()
  * 
- *     cpdef public void set(self, string key, int value):             # <<<<<<<<<<<<<<
+ *     cpdef void set(self, string key, CacheItem_t value):             # <<<<<<<<<<<<<<
  *         """Set value in cache and update the JSON file."""
  *         self.cache[key] = value
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_9set, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_set, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_set, __pyx_t_2) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_9set, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_set, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_set, __pyx_t_3) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
 
-  /* "src/zotero_qa/_caching.pyx":49
+  /* "src/zotero_qa/_caching.pyx":50
  *         self.cache[key] = value
  * 
- *     cpdef public bool has_key(self, string key):             # <<<<<<<<<<<<<<
+ *     cpdef bool has_key(self, string key):             # <<<<<<<<<<<<<<
  *         """Check if a key is already cached."""
  *         return self.cache.find(key) != self.cache.end()
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_11has_key, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_has_key, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_has_key, __pyx_t_2) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_11has_key, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache_has_key, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_3src_9zotero_qa_8_caching_Cache, __pyx_n_s_has_key, __pyx_t_3) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
 
   /* "(tree fragment)":1
@@ -7175,10 +7512,10 @@ if (!__Pyx_RefNanny) {
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_13__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache___reduce_cython, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_13__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache___reduce_cython, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -7186,26 +7523,27 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_15__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache___setstate_cython, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_3src_9zotero_qa_8_caching_5Cache_15__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Cache___setstate_cython, NULL, __pyx_n_s_src_zotero_qa__caching, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "src/zotero_qa/_caching.pyx":1
  * # cython: language_level=3             # <<<<<<<<<<<<<<
  * # cython: c_string_type=unicode
  * # cython: c_string_encoding=utf8
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /*--- Wrapped vars code ---*/
 
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init src.zotero_qa._caching", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -9774,6 +10112,49 @@ static PyObject *__Pyx_ImportDottedModule(PyObject *name, PyObject *parts_tuple)
     return __Pyx__ImportDottedModule(name, parts_tuple);
 }
 
+/* ImportFrom */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
+    PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
+    if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
+        const char* module_name_str = 0;
+        PyObject* module_name = 0;
+        PyObject* module_dot = 0;
+        PyObject* full_name = 0;
+        PyErr_Clear();
+        module_name_str = PyModule_GetName(module);
+        if (unlikely(!module_name_str)) { goto modbad; }
+        module_name = PyUnicode_FromString(module_name_str);
+        if (unlikely(!module_name)) { goto modbad; }
+        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__3);
+        if (unlikely(!module_dot)) { goto modbad; }
+        full_name = PyUnicode_Concat(module_dot, name);
+        if (unlikely(!full_name)) { goto modbad; }
+        #if PY_VERSION_HEX < 0x030700A1 || (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400)
+        {
+            PyObject *modules = PyImport_GetModuleDict();
+            if (unlikely(!modules))
+                goto modbad;
+            value = PyObject_GetItem(modules, full_name);
+        }
+        #else
+        value = PyImport_GetModule(full_name);
+        #endif
+      modbad:
+        Py_XDECREF(full_name);
+        Py_XDECREF(module_dot);
+        Py_XDECREF(module_name);
+    }
+    if (unlikely(!value)) {
+        PyErr_Format(PyExc_ImportError,
+        #if PY_MAJOR_VERSION < 3
+            "cannot import name %.230s", PyString_AS_STRING(name));
+        #else
+            "cannot import name %S", name);
+        #endif
+    }
+    return value;
+}
+
 /* FetchSharedCythonModule */
 static PyObject *__Pyx_FetchSharedCythonABIModule(void) {
     return __Pyx_PyImport_AddModuleRef((char*) __PYX_ABI_MODULE_NAME);
@@ -11637,7 +12018,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__14);
+        name = __Pyx_NewRef(__pyx_n_s__15);
     }
     return name;
 }

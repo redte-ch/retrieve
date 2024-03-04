@@ -5,7 +5,8 @@ from cpython cimport bool
 from libcpp.map cimport map
 from libcpp.string cimport string
 
-ctypedef map[string, int] Cache_t
+ctypedef map[string, int] CacheItem_t
+ctypedef map[string, CacheItem_t] Cache_t
 
 
 cdef public class Cache [object CyCache, type CyCache_t]:

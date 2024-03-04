@@ -6,7 +6,7 @@
 #include "Python.h"
 struct CyCache;
 
-/* "src/zotero_qa/_caching.pyx":17
+/* "src/zotero_qa/_caching.pyx":18
  * 
  * 
  * cdef public class Cache [object CyCache, type CyCache_t]:             # <<<<<<<<<<<<<<

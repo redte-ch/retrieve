@@ -2,14 +2,13 @@
 
 import os
 
-from langchain.chains import RetrievalQA
-
-from zotero_qa import Store
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain_community.llms import Ollama
+from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
+from langchain_community.llms import Ollama
 
+from zotero_qa import Store
 
 # The name of the Ollama model to use.
 model_name = os.getenv("MODEL_NAME")

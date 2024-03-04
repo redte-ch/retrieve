@@ -13,8 +13,8 @@ def tmp_dir(tmp_path):
 @pytest.fixture()
 def cache(tmp_dir):
     temp_file = tmp_dir / "cache.bin"
-    with open(temp_file, "w") as f:
-        f.write('{"key": 1}')
+    with open(temp_file, "wb") as f:
+        f.write(b'{"key": {}}')
     return Cache(str(temp_file))
 
 
@@ -35,12 +35,13 @@ def test_cache_open_when_the_file_cache_exists(cache):
     cache.load()
 
     # Assert
-    assert cache.cache == {"key": 1}
+    assert cache.cache == {"key": {}}
 
 
 def test_cache_save(cache):
     # Arrange
-    cache.cache = {"key": 2}
+    value = {"key": {"pages": 2, "embedded": 0}}
+    cache.cache = value
 
     # Act
     cache.save()
@@ -48,13 +49,13 @@ def test_cache_save(cache):
 
     # Assert
     cache.load()
-    assert cache.cache == {"key": 2}
+    assert cache.cache == value
 
 
 def test_cache_set(cache):
     # Arrange
     key = "pdf"
-    value = 1
+    value = {"anything": 0}
 
     # Act
     cache.set(key, value)

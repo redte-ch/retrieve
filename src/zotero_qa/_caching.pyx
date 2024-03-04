@@ -1,17 +1,18 @@
 # cython: language_level=3
 # cython: c_string_type=unicode
 # cython: c_string_encoding=utf8
-# distutils: language = c++
+# distutils: language=c++
 
 import os
 
-import ujson
+from msgspec import json
 
 from cpython cimport bool
 from libcpp.map cimport map
 from libcpp.string cimport string
 
-ctypedef map[string, int] Cache_t
+ctypedef map[string, int] CacheItem_t
+ctypedef map[string, CacheItem_t] Cache_t
 
 
 cdef public class Cache [object CyCache, type CyCache_t]:
@@ -28,21 +29,21 @@ cdef public class Cache [object CyCache, type CyCache_t]:
         if not os.path.exists(self.path):
             self.save()
         else:
-            with open(self.path, "r") as f:
-                self.cache = Cache_t(ujson.loads(f.read()))
+            with open(self.path, "rb") as f:
+                self.cache = Cache_t(json.decode(f.read()))
 
     cpdef void save(self):
         """Save the cache to disk."""
-        with open(self.path, "w") as f:
-            f.write(ujson.dumps(self.cache))
+        with open(self.path, "wb") as f:
+            f.write(json.encode(self.cache))
 
-    cpdef int get(self, string key):
+    cpdef CacheItem_t get(self, string key):
         """Retrieve value from cache."""
         if self.has_key(key):
             return self.cache[key]
-        return -1
+        return CacheItem_t()
 
-    cpdef void set(self, string key, int value):
+    cpdef void set(self, string key, CacheItem_t value):
         """Set value in cache and update the JSON file."""
         self.cache[key] = value
 
