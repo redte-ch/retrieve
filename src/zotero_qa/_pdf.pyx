@@ -6,7 +6,7 @@
 #
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
-#
+
 #  cython: language_level=3
 #  cython: c_string_type=unicode
 #  cython: c_string_encoding=utf8
