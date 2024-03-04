@@ -9,7 +9,7 @@ ctypedef map[string, int] CacheItem_t
 ctypedef map[string, CacheItem_t] Cache_t
 
 
-cdef public class Cache [object CyCache, type CyCache_t]:
+cdef class Cache:
     cpdef public str path
     cpdef public Cache_t cache
     cpdef void load(self)

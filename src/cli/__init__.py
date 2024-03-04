@@ -1,8 +1,3 @@
-import cyclopts
+from ._cache import cache
 
-app = cyclopts.App()
-
-
-@app.default
-def main():
-    print("Hello World!")
+__all__ = ["cache"]

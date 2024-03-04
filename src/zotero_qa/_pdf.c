@@ -23,7 +23,7 @@
         ],
         "include_dirs": [
             "src/zotero_qa",
-            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmpg1kczfio/.venv/lib/python3.11/site-packages/numpy/core/include"
+            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmp2agc9cqo/.venv/lib/python3.11/site-packages/numpy/core/include"
         ],
         "name": "src.zotero_qa._pdf",
         "sources": [

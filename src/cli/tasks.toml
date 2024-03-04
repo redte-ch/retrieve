@@ -1,0 +1,19 @@
+[tool.poe]
+    env.ROOT_DIR = "../..${POE_ROOT}"
+    envfile = "${ROOT_DIR}/.env"
+
+[tool.poe.tasks.cache]
+    script = "cli:cache(zotero_path, cache_path)"
+    help = "Cache some of the Zotero library's metadata."
+
+    [[tool.poe.tasks.cache.args]]
+        name    = "zotero_path"
+        default = "${ZOTERO_PATH}"
+
+    [[tool.poe.tasks.cache.args]]
+        name    = "cache_path"
+        default = "${DB_PATH}"
+
+[tool.poe.tasks.debug]
+    cmd = "cat ${ROOT_DIR}/.env"
+    help = "Print the environment variables."

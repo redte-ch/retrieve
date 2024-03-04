@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import sys
 from pathlib import Path
 
 import Cython.Compiler.Options as CompilerOptions
@@ -9,6 +10,9 @@ import numpy
 from Cython.Build import build_ext, cythonize
 from dotenv import dotenv_values
 from setuptools import Distribution, Extension
+
+# Set the file or glob pattern to build Cython extensions from.
+glob = sys.argv[1:] and sys.argv[1] or "*.pyx"
 
 # Load environment variables from the .env file.
 env = dotenv_values(".env")
@@ -91,5 +95,5 @@ def build_cython_extension(source_path: Path):
 
 
 # Build Cython extensions for all .pyx files in a specific directory.
-for pyx_path in Path("src").rglob("*.pyx"):
+for pyx_path in Path("src").rglob(glob):
     build_cython_extension(pyx_path)

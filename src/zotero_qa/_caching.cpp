@@ -24,7 +24,7 @@
         ],
         "include_dirs": [
             "src/zotero_qa",
-            "/Users/hyperion/.pyenv/versions/3.11.0/envs/zotero-3.11.0/lib/python3.11/site-packages/numpy/core/include"
+            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmp6gowgjwu/.venv/lib/python3.11/site-packages/numpy/core/include"
         ],
         "language": "c++",
         "name": "src.zotero_qa._caching",
@@ -1555,7 +1555,7 @@ static const char *__pyx_f[] = {
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
-struct CyCache;
+struct __pyx_obj_3src_9zotero_qa_8_caching_Cache;
 struct __pyx_opt_args_7cpython_11contextvars_get_value;
 struct __pyx_opt_args_7cpython_11contextvars_get_value_no_default;
 
@@ -1604,27 +1604,25 @@ typedef std::map<std::string,__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t>  __p
 /* "src/zotero_qa/_caching.pyx":18
  * 
  * 
- * cdef public class Cache [object CyCache, type CyCache_t]:             # <<<<<<<<<<<<<<
+ * cdef class Cache:             # <<<<<<<<<<<<<<
  *     """A simple JSON cache for storing PDFs chuck sizes."""
  *     cdef public str path
  */
-struct CyCache {
+struct __pyx_obj_3src_9zotero_qa_8_caching_Cache {
   PyObject_HEAD
   struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *__pyx_vtab;
   PyObject *path;
   __pyx_t_3src_9zotero_qa_8_caching_Cache_t cache;
 };
 
-__PYX_EXTERN_C DL_EXPORT(PyTypeObject) CyCache_t;
 
-__PYX_EXTERN_C DL_EXPORT(PyTypeObject) CyCache_t;
 
 struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache {
-  void (*load)(struct CyCache *, int __pyx_skip_dispatch);
-  void (*save)(struct CyCache *, int __pyx_skip_dispatch);
-  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*get)(struct CyCache *, std::string, int __pyx_skip_dispatch);
-  void (*set)(struct CyCache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch);
-  PyBoolObject *(*has_key)(struct CyCache *, std::string, int __pyx_skip_dispatch);
+  void (*load)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, int __pyx_skip_dispatch);
+  void (*save)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, int __pyx_skip_dispatch);
+  __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*get)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, int __pyx_skip_dispatch);
+  void (*set)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch);
+  PyBoolObject *(*has_key)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache *__pyx_vtabptr_3src_9zotero_qa_8_caching_Cache;
 /* #### Code section: utility_code_proto ### */
@@ -2403,11 +2401,11 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* #### Code section: module_declarations ### */
 static CYTHON_INLINE double __pyx_f_7cpython_7complex_7complex_4real_real(PyComplexObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE double __pyx_f_7cpython_7complex_7complex_4imag_imag(PyComplexObject *__pyx_v_self); /* proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch); /* proto*/
-static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch); /* proto*/
+static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from "cpython.version" */
 
@@ -2585,19 +2583,19 @@ static const char __pyx_k_Cache___setstate_cython[] = "Cache.__setstate_cython__
 static const char __pyx_k_src_zotero_qa__caching_pyx[] = "src/zotero_qa/_caching.pyx";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 /* #### Code section: decls ### */
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct CyCache *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct CyCache *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct CyCache *__pyx_v_self, std::string __pyx_v_key); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(struct CyCache *__pyx_v_self); /* proto */
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(struct CyCache *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(struct CyCache *__pyx_v_self); /* proto */
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(CYTHON_UNUSED struct CyCache *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(CYTHON_UNUSED struct CyCache *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_3src_9zotero_qa_8_caching_Cache(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -2722,7 +2720,7 @@ typedef struct {
   #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
-  PyObject *CyCache_t;
+  PyObject *__pyx_type_3src_9zotero_qa_8_caching_Cache;
   #endif
   PyTypeObject *__pyx_ptype_3src_9zotero_qa_8_caching_Cache;
   PyObject *__pyx_n_s_Cache;
@@ -2844,7 +2842,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_7cpython_4bool_bool);
   Py_CLEAR(clear_module_state->__pyx_ptype_7cpython_7complex_complex);
   Py_CLEAR(clear_module_state->__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
-  Py_CLEAR(clear_module_state->CyCache_t);
+  Py_CLEAR(clear_module_state->__pyx_type_3src_9zotero_qa_8_caching_Cache);
   Py_CLEAR(clear_module_state->__pyx_n_s_Cache);
   Py_CLEAR(clear_module_state->__pyx_n_s_Cache___reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_Cache___setstate_cython);
@@ -2942,7 +2940,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_7cpython_4bool_bool);
   Py_VISIT(traverse_module_state->__pyx_ptype_7cpython_7complex_complex);
   Py_VISIT(traverse_module_state->__pyx_ptype_3src_9zotero_qa_8_caching_Cache);
-  Py_VISIT(traverse_module_state->CyCache_t);
+  Py_VISIT(traverse_module_state->__pyx_type_3src_9zotero_qa_8_caching_Cache);
   Py_VISIT(traverse_module_state->__pyx_n_s_Cache);
   Py_VISIT(traverse_module_state->__pyx_n_s_Cache___reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_Cache___setstate_cython);
@@ -3140,7 +3138,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
-#define CyCache_t __pyx_mstate_global->CyCache_t
+#define __pyx_type_3src_9zotero_qa_8_caching_Cache __pyx_mstate_global->__pyx_type_3src_9zotero_qa_8_caching_Cache
 #endif
 #define __pyx_ptype_3src_9zotero_qa_8_caching_Cache __pyx_mstate_global->__pyx_ptype_3src_9zotero_qa_8_caching_Cache
 #define __pyx_n_s_Cache __pyx_mstate_global->__pyx_n_s_Cache
@@ -4507,7 +4505,7 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_1__cinit__(PyObject *__pyx_
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyUnicode_Type), 1, "path", 1))) __PYX_ERR(0, 23, __pyx_L1_error)
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(((struct CyCache *)__pyx_v_self), __pyx_v_path);
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), __pyx_v_path);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4524,7 +4522,7 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_1__cinit__(PyObject *__pyx_
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_path) {
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache___cinit__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_path) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __pyx_t_3src_9zotero_qa_8_caching_Cache_t __pyx_t_1;
@@ -4595,7 +4593,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_load(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_f = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5001,14 +4999,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("load", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "load", 0))) return NULL;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct CyCache *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_2load(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5050,7 +5048,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct CyCache *__pyx_v_self, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_save(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_f = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5388,14 +5386,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("save", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "save", 0))) return NULL;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct CyCache *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4save(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5437,7 +5435,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
+static __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_f_3src_9zotero_qa_8_caching_5Cache_get(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
   __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5663,7 +5661,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(((struct CyCache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key));
 
   /* function exit code */
   {
@@ -5676,7 +5674,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct CyCache *__pyx_v_self, std::string __pyx_v_key) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_6get(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_t_1;
@@ -5719,7 +5717,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch) {
+static void __pyx_f_3src_9zotero_qa_8_caching_5Cache_set(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value, int __pyx_skip_dispatch) {
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5920,7 +5918,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(((struct CyCache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_value));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_value));
 
   /* function exit code */
   {
@@ -5933,7 +5931,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct CyCache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_8set(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t __pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5975,7 +5973,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
+static PyBoolObject *__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key, int __pyx_skip_dispatch) {
   PyBoolObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6166,7 +6164,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(((struct CyCache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), __PYX_STD_MOVE_IF_SUPPORTED(__pyx_v_key));
 
   /* function exit code */
   {
@@ -6179,7 +6177,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCache *__pyx_v_self, std::string __pyx_v_key) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, std::string __pyx_v_key) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6206,7 +6204,7 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_10has_key(struct CyCa
 }
 
 /* "src/zotero_qa/_caching.pyx":20
- * cdef public class Cache [object CyCache, type CyCache_t]:
+ * cdef class Cache:
  *     """A simple JSON cache for storing PDFs chuck sizes."""
  *     cdef public str path             # <<<<<<<<<<<<<<
  *     cdef public Cache_t cache
@@ -6221,14 +6219,14 @@ static PyObject *__pyx_pw_3src_9zotero_qa_8_caching_5Cache_4path_1__get__(PyObje
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(struct CyCache *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path___get__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 1);
@@ -6252,14 +6250,14 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_4path_3__set__(PyObject *__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(((struct CyCache *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_2__set__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6296,14 +6294,14 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_4path_5__del__(PyObject *__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__del__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(struct CyCache *__pyx_v_self) {
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_4path_4__del__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__del__", 1);
@@ -6335,14 +6333,14 @@ static PyObject *__pyx_pw_3src_9zotero_qa_8_caching_5Cache_5cache_1__get__(PyObj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(struct CyCache *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache___get__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6376,14 +6374,14 @@ static int __pyx_pw_3src_9zotero_qa_8_caching_5Cache_5cache_3__set__(PyObject *_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(((struct CyCache *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(struct CyCache *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_3src_9zotero_qa_8_caching_5Cache_5cache_2__set__(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __pyx_t_3src_9zotero_qa_8_caching_Cache_t __pyx_t_1;
   int __pyx_lineno = 0;
@@ -6442,14 +6440,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(((struct CyCache *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(CYTHON_UNUSED struct CyCache *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_12__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6571,7 +6569,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(((struct CyCache *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   {
@@ -6584,7 +6582,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(CYTHON_UNUSED struct CyCache *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6618,7 +6616,7 @@ static PyObject *__pyx_pf_3src_9zotero_qa_8_caching_5Cache_14__setstate_cython__
 static struct __pyx_vtabstruct_3src_9zotero_qa_8_caching_Cache __pyx_vtable_3src_9zotero_qa_8_caching_Cache;
 
 static PyObject *__pyx_tp_new_3src_9zotero_qa_8_caching_Cache(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct CyCache *p;
+  struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *p;
   PyObject *o;
   #if CYTHON_COMPILING_IN_LIMITED_API
   allocfunc alloc_func = (allocfunc)PyType_GetSlot(t, Py_tp_alloc);
@@ -6631,7 +6629,7 @@ static PyObject *__pyx_tp_new_3src_9zotero_qa_8_caching_Cache(PyTypeObject *t, P
   }
   if (unlikely(!o)) return 0;
   #endif
-  p = ((struct CyCache *)o);
+  p = ((struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)o);
   p->__pyx_vtab = __pyx_vtabptr_3src_9zotero_qa_8_caching_Cache;
   new((void*)&(p->cache)) __pyx_t_3src_9zotero_qa_8_caching_Cache_t();
   p->path = ((PyObject*)Py_None); Py_INCREF(Py_None);
@@ -6643,7 +6641,7 @@ static PyObject *__pyx_tp_new_3src_9zotero_qa_8_caching_Cache(PyTypeObject *t, P
 }
 
 static void __pyx_tp_dealloc_3src_9zotero_qa_8_caching_Cache(PyObject *o) {
-  struct CyCache *p = (struct CyCache *)o;
+  struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *p = (struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && (!PyType_IS_GC(Py_TYPE(o)) || !__Pyx_PyObject_GC_IsFinalized(o))) {
     if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_3src_9zotero_qa_8_caching_Cache) {
@@ -6702,7 +6700,7 @@ static struct PyGetSetDef __pyx_getsets_3src_9zotero_qa_8_caching_Cache[] = {
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
-static PyType_Slot CyCache_t_slots[] = {
+static PyType_Slot __pyx_type_3src_9zotero_qa_8_caching_Cache_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_3src_9zotero_qa_8_caching_Cache},
   {Py_tp_doc, (void *)PyDoc_STR("A simple JSON cache for storing PDFs chuck sizes.")},
   {Py_tp_methods, (void *)__pyx_methods_3src_9zotero_qa_8_caching_Cache},
@@ -6710,19 +6708,19 @@ static PyType_Slot CyCache_t_slots[] = {
   {Py_tp_new, (void *)__pyx_tp_new_3src_9zotero_qa_8_caching_Cache},
   {0, 0},
 };
-static PyType_Spec CyCache_t_spec = {
+static PyType_Spec __pyx_type_3src_9zotero_qa_8_caching_Cache_spec = {
   "src.zotero_qa._caching.Cache",
-  sizeof(struct CyCache),
+  sizeof(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
-  CyCache_t_slots,
+  __pyx_type_3src_9zotero_qa_8_caching_Cache_slots,
 };
 #else
 
-DL_EXPORT(PyTypeObject) CyCache_t = {
+static PyTypeObject __pyx_type_3src_9zotero_qa_8_caching_Cache = {
   PyVarObject_HEAD_INIT(0, 0)
   "src.zotero_qa._caching.""Cache", /*tp_name*/
-  sizeof(struct CyCache), /*tp_basicsize*/
+  sizeof(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_3src_9zotero_qa_8_caching_Cache, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
@@ -7039,16 +7037,16 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   __pyx_vtabptr_3src_9zotero_qa_8_caching_Cache = &__pyx_vtable_3src_9zotero_qa_8_caching_Cache;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.load = (void (*)(struct CyCache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_load;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.save = (void (*)(struct CyCache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_save;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.get = (__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*)(struct CyCache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_get;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.set = (void (*)(struct CyCache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_set;
-  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.has_key = (PyBoolObject *(*)(struct CyCache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.load = (void (*)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_load;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.save = (void (*)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_save;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.get = (__pyx_t_3src_9zotero_qa_8_caching_CacheItem_t (*)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_get;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.set = (void (*)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, __pyx_t_3src_9zotero_qa_8_caching_CacheItem_t, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_set;
+  __pyx_vtable_3src_9zotero_qa_8_caching_Cache.has_key = (PyBoolObject *(*)(struct __pyx_obj_3src_9zotero_qa_8_caching_Cache *, std::string, int __pyx_skip_dispatch))__pyx_f_3src_9zotero_qa_8_caching_5Cache_has_key;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &CyCache_t_spec, NULL); if (unlikely(!__pyx_ptype_3src_9zotero_qa_8_caching_Cache)) __PYX_ERR(0, 18, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&CyCache_t_spec, __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_3src_9zotero_qa_8_caching_Cache_spec, NULL); if (unlikely(!__pyx_ptype_3src_9zotero_qa_8_caching_Cache)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_3src_9zotero_qa_8_caching_Cache_spec, __pyx_ptype_3src_9zotero_qa_8_caching_Cache) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
   #else
-  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = &CyCache_t;
+  __pyx_ptype_3src_9zotero_qa_8_caching_Cache = &__pyx_type_3src_9zotero_qa_8_caching_Cache;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif

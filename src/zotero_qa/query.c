@@ -16,16 +16,14 @@
             "-fopenmp",
             "-march=native",
             "-mtune=native",
-            "-Wno-error=address",
-            "-Wno-error=unused-function"
+            "-Wno-error=address"
         ],
         "extra_link_args": [
             "-fopenmp"
         ],
         "include_dirs": [
             "src/zotero_qa",
-            "src/include/msgpack",
-            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmpoz3kony5/.venv/lib/python3.11/site-packages/numpy/core/include"
+            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmp37zdoa_5/.venv/lib/python3.11/site-packages/numpy/core/include"
         ],
         "name": "src.zotero_qa.query",
         "sources": [

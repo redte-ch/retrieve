@@ -15,7 +15,7 @@ ctypedef map[string, int] CacheItem_t
 ctypedef map[string, CacheItem_t] Cache_t
 
 
-cdef public class Cache [object CyCache, type CyCache_t]:
+cdef class Cache:
     """A simple JSON cache for storing PDFs chuck sizes."""
     cdef public str path
     cdef public Cache_t cache

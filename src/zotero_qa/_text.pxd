@@ -10,5 +10,10 @@ cdef class DocSplitter:
 cdef class TextSplitter:
     cdef public int chunk_size
     cdef public int chunk_overlap
+    cdef char* separator
+    cdef object separator_pattern
+
     cpdef list[char*] split(self, char* text)
     cpdef list[char*] merge(self, list[char*] splits)
+    cdef list[char*] get_current_chunk(self, list current_chunk)
+    cdef int get_current_len(self, list[char*] current_chunk)

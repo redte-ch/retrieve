@@ -11,12 +11,23 @@
 
 [tool.poe]
     [tool.poe.tasks.build]
-        cmd = "python build.py ${path} ${glob} --inplace"
-        help = "Build a file or the entire project."
-        args = [
-            { name = "path", default = "src", help = "Path to search files to build." },
-            { name = "glob", default = "*.pyx", help = "File or (recursive) glob." },
+        cmd = "python build.py --inplace --verbose -- ${file}"
+        help = "Build a file for rapid development."
+
+        [[tool.poe.tasks.build.args]]
+            name = "file"
+            help = "Name of the file to build."
+            required = true
+
+    [tool.poe.tasks.clean]
+        sequence = [
+            "rm -rf build dist src/*.egg-info",
+            "find . -name '*.pyc' -delete",
+            "find . -name '__pycache__' -delete",
+            "find . -name '*.so' -delete",
         ]
+        help = "Clean all build and built files."
+        default_item_type = "cmd"
 
     [tool.poe.tasks.test]
         sequence = [

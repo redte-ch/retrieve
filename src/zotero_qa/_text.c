@@ -23,7 +23,7 @@
         ],
         "include_dirs": [
             "src/zotero_qa",
-            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmpg1kczfio/.venv/lib/python3.11/site-packages/numpy/core/include"
+            "/var/folders/lg/8s13ggm922sfg62gtck5cl_w0000gn/T/tmp37zdoa_5/.venv/lib/python3.11/site-packages/numpy/core/include"
         ],
         "name": "src.zotero_qa._text",
         "sources": [
@@ -1597,6 +1597,8 @@ struct __pyx_obj_9zotero_qa_5_text_TextSplitter {
   struct __pyx_vtabstruct_9zotero_qa_5_text_TextSplitter *__pyx_vtab;
   int chunk_size;
   int chunk_overlap;
+  char *separator;
+  PyObject *separator_pattern;
 };
 
 
@@ -1686,6 +1688,8 @@ static struct __pyx_vtabstruct_9zotero_qa_5_text_DocSplitter *__pyx_vtabptr_9zot
 struct __pyx_vtabstruct_9zotero_qa_5_text_TextSplitter {
   PyObject *(*split)(struct __pyx_obj_9zotero_qa_5_text_TextSplitter *, char *, int __pyx_skip_dispatch);
   PyObject *(*merge)(struct __pyx_obj_9zotero_qa_5_text_TextSplitter *, PyObject *, int __pyx_skip_dispatch);
+  PyObject *(*get_current_chunk)(struct __pyx_obj_9zotero_qa_5_text_TextSplitter *, PyObject *);
+  int (*get_current_len)(struct __pyx_obj_9zotero_qa_5_text_TextSplitter *, PyObject *);
 };
 static struct __pyx_vtabstruct_9zotero_qa_5_text_TextSplitter *__pyx_vtabptr_9zotero_qa_5_text_TextSplitter;
 
