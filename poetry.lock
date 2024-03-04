@@ -708,6 +708,24 @@ test = ["certifi", "pretend", "pytest (>=6.2.0)", "pytest-benchmark", "pytest-co
 test-randomorder = ["pytest-randomly"]
 
 [[package]]
+name = "cyclopts"
+version = "2.4.0"
+description = ""
+optional = false
+python-versions = ">=3.8,<4.0"
+files = [
+    {file = "cyclopts-2.4.0-py3-none-any.whl", hash = "sha256:4f9cb4d0941971a2f52f70ed5f67acc6379633ff40a0fd21c9aa49b0f072a839"},
+    {file = "cyclopts-2.4.0.tar.gz", hash = "sha256:5ac93497cefd940b9ce267006b76371fbb4304975e85cd418085d0fac0c4ff60"},
+]
+
+[package.dependencies]
+attrs = ">=23.1.0"
+docstring-parser = ">=0.15,<0.16"
+rich = ">=13.6.0"
+rich-rst = ">=1.2.0,<2.0.0"
+typing-extensions = {version = ">=4.8.0", markers = "python_full_version >= \"3.8.0\" and python_full_version < \"4.0.0\""}
+
+[[package]]
 name = "cython"
 version = "3.0.8"
 description = "The Cython compiler for writing C extensions in the Python language."
@@ -832,6 +850,28 @@ wrapt = ">=1.10,<2"
 
 [package.extras]
 dev = ["PyTest", "PyTest-Cov", "bump2version (<1)", "sphinx (<2)", "tox"]
+
+[[package]]
+name = "docstring-parser"
+version = "0.15"
+description = "Parse Python docstrings in reST, Google and Numpydoc format"
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "docstring_parser-0.15-py3-none-any.whl", hash = "sha256:d1679b86250d269d06a99670924d6bce45adc00b08069dae8c47d98e89b667a9"},
+    {file = "docstring_parser-0.15.tar.gz", hash = "sha256:48ddc093e8b1865899956fcc03b03e66bb7240c310fac5af81814580c55bf682"},
+]
+
+[[package]]
+name = "docutils"
+version = "0.20.1"
+description = "Docutils -- Python Documentation Utilities"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "docutils-0.20.1-py3-none-any.whl", hash = "sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6"},
+    {file = "docutils-0.20.1.tar.gz", hash = "sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b"},
+]
 
 [[package]]
 name = "executing"
@@ -3006,6 +3046,21 @@ pygments = ">=2.13.0,<3.0.0"
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
+name = "rich-rst"
+version = "1.2.0"
+description = "A beautiful reStructuredText renderer for rich"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "rich-rst-1.2.0.tar.gz", hash = "sha256:12e3962fd2ed99f5361beab8abb35b87b1d2a8d3a14cb705bc70d2eb2fa81ddd"},
+    {file = "rich_rst-1.2.0-py3-none-any.whl", hash = "sha256:49903d68fc7019d672145397719970c23ebcd7617c664bc26004607e83e4db6d"},
+]
+
+[package.dependencies]
+docutils = "*"
+rich = ">=12.0.0"
+
+[[package]]
 name = "rsa"
 version = "4.9"
 description = "Pure-Python RSA implementation"
@@ -4023,4 +4078,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e66c5cd2906bf5748c03f7aebb58e6715c4a91633cef576b96c88bd4c8d1e4b0"
+content-hash = "068a2e68dbf253e668590ade7c82b9815454d6d1576f193919750e34092a2fbe"

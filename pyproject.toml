@@ -21,12 +21,18 @@ description = ""
 authors = ["Mauko Quiroga-Alvarado <mauko@redte.ch>"]
 license = "APGL-3.0"
 readme = "README.md"
-packages = [{ include = "zotero_qa", from = "src" }]
+packages = [
+    { include = "zotero_qa", from = "src" },
+    { include = "cli", from = "src" }
+]
 include = ["src/**/*.so", "src/**/*.pyd", "src/**/*.dylib"]
 
 [tool.poetry.build]
 script = 'build.py'
 generate-setup-file = false
+
+[tool.poetry.scripts]
+zotero = "cli.app"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -38,6 +44,7 @@ langchain-community = "0.0.24"
 python-dotenv = "1.0.1"
 pymupdf = "^1.23.26"
 ujson = "^5.9.0"
+cyclopts = "^2.4.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "24.2.0"

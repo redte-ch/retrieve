@@ -1,19 +1,45 @@
 """The chain for the QA."""
 
+import os
+
 from langchain.chains import RetrievalQA
 
-from zotero_qa.llm import LLM
-from zotero_qa.prompt import Prompt
-from zotero_qa.store import Store
+from zotero_qa import Store
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain_community.llms import Ollama
+from langchain.prompts import PromptTemplate
+
+
+# The name of the Ollama model to use.
+model_name = os.getenv("MODEL_NAME")
+
+# The template for the prompt.
+template = """
+    Tu es mon assistant.
+    Fais ce que je te dis.
+    Basé ou basée sur mes documents, réponds aux questions.
+    Réponds toujours en français, même si les documents ne le sont pas.
+    Context: {context}
+    User: {question}
+    Chatbot:""
+"""
 
 # The prompt template object.
-prompt = Prompt()
+prompt = PromptTemplate(
+            input_variables=["context", "question"],
+            template=template,
+        )
 
 # The vector store object.
 store = Store()
 
 # The Ollama LLM object.
-llm = LLM()
+llm = Ollama(
+            base_url="http://localhost:11434",
+            callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
+            model=model_name,
+        )
 
 
 class Chain(RetrievalQA):

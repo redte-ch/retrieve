@@ -1,3 +1,5 @@
+"""Build Cython extensions from .pyx files using the distutils module."""
+
 import os
 import shutil
 from pathlib import Path
