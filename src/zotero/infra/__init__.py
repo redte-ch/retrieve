@@ -7,12 +7,12 @@
 
 from ._conn import create_db_engine
 from ._repo import Repo
-from .models import Base, Item, Library
+from .mappings import Base, Items, Libraries
 
 __all__ = [
     "Base",
-    "Library",
+    "Libraries",
     "Repo",
     "create_db_engine",
-    "Item",
+    "Items",
 ]

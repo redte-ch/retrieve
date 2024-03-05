@@ -6,7 +6,7 @@
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
 
-from typing import Any, Type, TypeVar
+from typing import Any, TypeVar
 
 from sqlalchemy.engine.base import Engine
 from sqlalchemy.orm import Query, Session
@@ -25,7 +25,7 @@ class Repo:
 
         self.engine = engine
 
-    def all(self, cls: Type[T]) -> list[T]:
+    def all(self, cls: type[T]) -> list[T]:
         """Retrieves all instances of a given class from the database.
 
         Args:
@@ -39,7 +39,7 @@ class Repo:
         with Session(self.engine) as s:
             return s.query(cls).all()
 
-    def find(self, cls: Type[T], id: int) -> T | None:
+    def find(self, cls: type[T], id: int) -> T | None:
         """Retrieves an instance of a given class by its ID from the database.
 
         Args:
@@ -54,7 +54,7 @@ class Repo:
         with Session(self.engine) as s:
             return s.get(cls, id)
 
-    def filter(self, cls: Type[T], **kwargs: Any) -> Query[T]:
+    def filter(self, cls: type[T], **kwargs: Any) -> Query[T]:
         """Filters instances of a given class based on the provided criteria.
 
         Args:
@@ -81,7 +81,7 @@ class Repo:
             s.add(item)
             s.commit()
 
-    def update(self, cls: Type[T], id: int, **kwargs: Any) -> None:
+    def update(self, cls: type[T], id: int, **kwargs: Any) -> None:
         """Updates an item in the database based on the provided criteria.
 
         Args:
