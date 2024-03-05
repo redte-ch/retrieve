@@ -75,14 +75,15 @@
     [tool.poetry.dependencies]
         python = "^3.11 || ^3.12"
         chromadb = "0.4.24" # VectorDB
+        cryptography = "42.0.5" # For PDFs with passwords
         langchain = "0.1.9" # LLM tools
         langchain-community = "0.0.24" # LLM tools community
         msgspec = "^0.18.6" # Fast JSON/MsgPack encoding/decoding/parsing
         poethepoet = "^0.25.0" # CLI tools
         pymupdf = "^1.23.26" # PDF parsing
-        rich = "^13.7.1" # Pretty printing
-        cryptography = "42.0.5" # For PDFs with passwords
         python-dotenv = "1.0.1" # Environment variables # TODO: Replace / remove
+        rich = "^13.7.1" # Pretty printing
+        sqlalchemy = "^2.0.28"
 
     [tool.poetry.group.dev.dependencies]
         Cython = "3.0.8" # C/C++ compiling
@@ -127,6 +128,7 @@
     testpaths = ["tests"]
     xfail_strict = true
     filterwarnings = [
+        "ignore::pytest.PytestCollectionWarning",
         "ignore::RuntimeWarning",
     ]
     doctest_optionflags = [

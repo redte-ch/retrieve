@@ -1529,13 +1529,13 @@ extended-testing = ["aiosqlite (>=0.19.0,<0.20.0)", "aleph-alpha-client (>=2.15.
 
 [[package]]
 name = "langchain-core"
-version = "0.1.28"
+version = "0.1.29"
 description = "Building applications with LLMs through composability"
 optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
-    {file = "langchain_core-0.1.28-py3-none-any.whl", hash = "sha256:f40ca31257e003eb404e6275345d13a1b3839df147153684bab56bb8d80162c6"},
-    {file = "langchain_core-0.1.28.tar.gz", hash = "sha256:04e761a513200b6e5b5818613821945799c07bc5349087d7692e50823107c9d6"},
+    {file = "langchain_core-0.1.29-py3-none-any.whl", hash = "sha256:b96d599ff98810a7fcba726c151d473a4b938e0f90b9907c460b0bf0a1c7a0f7"},
+    {file = "langchain_core-0.1.29.tar.gz", hash = "sha256:6731dabffad03b9213ada2640d54ed7f4ef6b99fce87ade3c71474ae154dd3cc"},
 ]
 
 [package.dependencies]
@@ -1553,13 +1553,13 @@ extended-testing = ["jinja2 (>=3,<4)"]
 
 [[package]]
 name = "langsmith"
-version = "0.1.15"
+version = "0.1.19"
 description = "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform."
 optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
-    {file = "langsmith-0.1.15-py3-none-any.whl", hash = "sha256:5d6f23f11a8c0b27a50bf9f5758d7318ff94e1bc2ba1470581f5ec5fda93e119"},
-    {file = "langsmith-0.1.15.tar.gz", hash = "sha256:ad491b95e8a9b11dbd445333b12c14e94c8acd8fe070f4a78ad4834c59edefe3"},
+    {file = "langsmith-0.1.19-py3-none-any.whl", hash = "sha256:f1513162cec650a9ed7eba8b07d333e48e898249e46ff95c1266bfc653762460"},
+    {file = "langsmith-0.1.19.tar.gz", hash = "sha256:461093c19d5eb9b108069381c7342ba2fa30d60d77e5361e2374b779fa401b8b"},
 ]
 
 [package.dependencies]
@@ -1593,13 +1593,13 @@ testing = ["coverage", "pytest", "pytest-cov", "pytest-regressions"]
 
 [[package]]
 name = "marshmallow"
-version = "3.21.0"
+version = "3.21.1"
 description = "A lightweight library for converting complex datatypes to and from native Python datatypes."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "marshmallow-3.21.0-py3-none-any.whl", hash = "sha256:e7997f83571c7fd476042c2c188e4ee8a78900ca5e74bd9c8097afa56624e9bd"},
-    {file = "marshmallow-3.21.0.tar.gz", hash = "sha256:20f53be28c6e374a711a16165fb22a8dc6003e3f7cda1285e3ca777b9193885b"},
+    {file = "marshmallow-3.21.1-py3-none-any.whl", hash = "sha256:f085493f79efb0644f270a9bf2892843142d80d7174bbbd2f3713f2a589dc633"},
+    {file = "marshmallow-3.21.1.tar.gz", hash = "sha256:4e65e9e0d80fc9e609574b9983cf32579f305c718afb30d7233ab818571768c3"},
 ]
 
 [package.dependencies]
@@ -3983,4 +3983,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11 || ^3.12"
-content-hash = "eeba8527e54fb23b0475b12b015ce08494ecbc589e6968b6c9cfa19177d14ebd"
+content-hash = "6e4ac619597415a8e2c2132d789b9210aa3a6e3dc1ea7b2aa5047805c385bc5d"

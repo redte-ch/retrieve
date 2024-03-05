@@ -5,11 +5,13 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-from .infra import Base, Library, Repo, create_db_engine
+from ._conn import create_db_engine
+from ._repo import Repo
+from .models import Base, Library
 
 __all__ = [
-    "Repo",
-    "Library",
     "Base",
+    "Library",
+    "Repo",
     "create_db_engine",
 ]
