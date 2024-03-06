@@ -7,11 +7,14 @@
 
 #  cython: language_level=3
 
-from zotero_qa cimport Page, PageParser
+from zotero_qa import Page, PageParser
+
+ctypedef object Page_t
+ctypedef object PageParser_t
 
 
 cdef class DocSplitter:
-    cpdef list[Page] split(self, PageParser parser, TextSplitter text_splitter)
+    cpdef list[Page_t] split(self, PageParser_t parser, TextSplitter text_splitter)
 
 
 cdef class TextSplitter:

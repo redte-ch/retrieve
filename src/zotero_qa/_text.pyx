@@ -11,11 +11,15 @@
 
 import re
 
-from zotero_qa cimport Page, PageParser
+from zotero_qa import Page, PageParser
+
+ctypedef object Page_t
+ctypedef object PageParser_t
+
 
 
 cdef class DocSplitter:
-    cpdef list[Page] split(self, PageParser parser, TextSplitter text_splitter):
+    cpdef list[Page_t] split(self, PageParser_t parser, TextSplitter text_splitter):
         cdef int n = parser.doc.page_count
         cdef list[Page] acc = []
 
@@ -46,8 +50,7 @@ cdef class TextSplitter:
 
     cpdef list[char*] split(self, char* text):
         # Split text using the compiled regex
-        cdef list[str] splits = self.separator_pattern.split(text)
-
+        cdef list[char *] splits = self.separator_pattern.split(text)
         # Filter out any empty strings
         return [s for s in splits if s]
 

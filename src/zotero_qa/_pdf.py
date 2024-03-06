@@ -15,55 +15,39 @@
 
 import fitz
 
-
-cdef struct Metadata:
-    char* author
-    char* created_at
-    char* creator
-    char* format
-    char* keywords
-    char* path
-    char* producer
-    char* subject
-    char* title
-    char* updated_at
-    int page
-    int total_pages
+from .domain._document import Metadata, Page
 
 
-cdef struct Page:
-    char* text
-    Metadata metadata
-
-
-cdef class DocLoader:
+class DocLoader:
     """Load a PDF document from a file path."""
-    cdef public object doc
-    cdef public char* path
 
-    def __cinit__(self, char* path):
+    doc: fitz.Document
+    path: str
+
+    def __init__(self, path: str) -> None:
         """Initialize with a file path."""
         self.doc = fitz.open(path, filetype="pdf")
         self.path = path
 
 
-cdef class PageParser:
+class PageParser:
     """Parse a PDF document page."""
-    cdef public DocLoader loader
-    cdef public object doc
 
-    def __cinit__(self, DocLoader loader):
+    loader: DocLoader
+    doc: fitz.Document
+
+    def __init__(self, loader: DocLoader) -> None:
         """Initialize the parser."""
         self.loader = loader
         self.doc = self.loader.doc
 
-    cpdef Page parse(self, int at):
+    def parse(self, at: int) -> Page:
         """Parse the doc."""
-        cdef str page_text = self.doc.get_page_text(at - 1)
-        cdef dict metadata = self.doc.metadata
+        page_text: str = self.doc.get_page_text(at - 1).rstrip("\n")
+        metadata: dict[str, int | str] = self.doc.metadata
 
         return Page(
-            text=page_text.strip().replace("\n \n", "\n\n"),
+            text=page_text,
             metadata=Metadata(
                 author=metadata.get("author", ""),
                 created_at=metadata.get("creationDate", ""),
@@ -77,5 +61,5 @@ cdef class PageParser:
                 title=metadata.get("title"),
                 total_pages=self.doc.page_count,
                 updated_at=metadata.get("modDate", ""),
-            )
+            ),
         )

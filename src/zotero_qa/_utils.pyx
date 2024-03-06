@@ -12,11 +12,11 @@
 """Helper functions for the project."""
 
 import os
-from pathlib import Path
 
 import dotenv
 
-from zotero_qa cimport DocLoader, DocSplitter, Page, PageParser, TextSplitter
+from zotero_qa cimport DocSplitter, TextSplitter
+from zotero_qa import DocLoader, PageParser
 
 # It's necessary to call "import_array" if you use any part of the
 # numpy PyArray_* API. From Cython 3, accessing attributes like
@@ -50,6 +50,10 @@ cdef str separator = str(os.getenv("SEPARATOR"))
 # The text splitter object.
 # splitter = TextSplitter(chunk_size, chunk_overlap, "\n\n")
 
+ctypedef object Page_t
+ctypedef object DocLoader_t
+ctypedef object PageParser_t
+
 
 cpdef list[char*] list_files(char* path):
     """Recursively find all PDF files in a directory."""
@@ -74,10 +78,10 @@ cpdef list[char*] list_files(char* path):
     return pdf_files
 
 
-cpdef list[Page] open_file(str path):
+cpdef list[Page_t] open_file(char* path):
     """Load and parse a PDF file."""
-    cdef DocLoader loader = DocLoader(path)
-    cdef PageParser parser = PageParser(loader)
+    cdef DocLoader_t loader = DocLoader(path)
+    cdef PageParser_t parser = PageParser(loader)
     cdef DocSplitter doc_splitter = DocSplitter()
     cdef TextSplitter text_splitter = TextSplitter(
         chunk_size,
@@ -88,14 +92,14 @@ cpdef list[Page] open_file(str path):
     print("    Loading...")
 
     return doc_splitter.split(parser, text_splitter)
-#
-#
-# def get_ids(path: str, docs: list[Document]) -> list[str]:
-#     """Generate the IDs for the documents."""
-#     print("    Generating IDs...")
-#     return [f"{path.replace(' ', '_')}_{index + 1}" for index, doc in enumerate(docs)]
-#
-#
+
+
+cpdef list[char*] get_ids(char* path, list[Page_t] pages):
+    """Generate the IDs for the pages."""
+    print("    Generating IDs...")
+    return [f"{path.replace(' ', '_')}_{index + 1}" for index, doc in enumerate(pages)]
+
+
 # def store_docs(docs: list[Document], ids: list[str]) -> None:
 #     """Store a document in the vector store."""
 #     print("    Storing documents...")

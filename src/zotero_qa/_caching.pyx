@@ -31,6 +31,10 @@ cdef class Cache:
         self.path = path
         self.cache = Cache_t()
 
+    def __init__(self, path: str) -> None:
+        self.path = path
+        self.cache = Cache_t()
+
     cpdef void load(self):
         """Load or create the cache from/to disk."""
         if not os.path.exists(self.path):
