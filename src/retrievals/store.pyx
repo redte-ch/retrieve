@@ -23,13 +23,13 @@ from zotero_qa.embeddings import Embeddings
 dotenv.load_dotenv()
 
 # The name of the Ollama model to use.
-model_name = os.getenv("MODEL_NAME")
+model_name = os.getenv('MODEL_NAME')
 
 # The name of the collection to store the documents in.
-db_name = os.getenv("DB_NAME")
+db_name = os.getenv('DB_NAME')
 
 # The directory to persist the vector store in.
-db_path = os.getenv("DB_PATH")
+db_path = os.getenv('DB_PATH')
 
 # The embedding function to use.
 embeddings = Embeddings(model_name)
