@@ -16,7 +16,7 @@ import os
 import dotenv
 
 from zotero_qa cimport DocSplitter, TextSplitter
-from zotero_qa import DocLoader, PageParser
+from retrievals import DocLoader, PageParser
 
 # It's necessary to call "import_array" if you use any part of the
 # numpy PyArray_* API. From Cython 3, accessing attributes like

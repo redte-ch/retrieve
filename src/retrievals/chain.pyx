@@ -17,7 +17,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import Ollama
 
-from zotero_qa import Store
+from retrievals import Store
 
 # The name of the Ollama model to use.
 model_name = os.getenv("MODEL_NAME")

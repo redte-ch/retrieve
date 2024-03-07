@@ -7,7 +7,7 @@
 
 #  cython: language_level=3
 
-from zotero_qa import Page, PageParser
+from retrievals import Page, PageParser
 
 ctypedef object Page_t
 ctypedef object PageParser_t

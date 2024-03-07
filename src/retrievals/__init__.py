@@ -9,8 +9,8 @@
 
 """Zotero QA allows you to chat with your Zotero PDF collections."""
 
-from zotero_qa._caching import Cache
-from zotero_qa.domain.document_management._document import Document
+from retrievals._caching import Cache
+from retrievals.domain.document_management._document import Document
 
 # from zotero_qa._pdf import DocLoader, Page, PageParser
 # from zotero_qa._text import DocSplitter, TextSplitter

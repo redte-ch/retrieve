@@ -10,7 +10,7 @@ import os
 import rich
 import rich.progress
 
-import zotero_qa
+import retrievals
 
 
 def split(zotero_path: str, cache_path: str) -> None:
@@ -21,10 +21,10 @@ def split(zotero_path: str, cache_path: str) -> None:
         raise ValueError("The path to the vector database directory is required.")
 
     rich.print("Getting the files to process...")
-    paths = zotero_qa.list_files(f"{zotero_path}/storage")
+    paths = retrievals.list_files(f"{zotero_path}/storage")
 
     rich.print("Creating or loading the cache...")
-    cache = zotero_qa.Cache(f"{cache_path}/cache.json")
+    cache = retrievals.Cache(f"{cache_path}/cache.json")
     cache.load()
 
     print("Iterating over the files to split and store them in chunks...")
@@ -42,10 +42,10 @@ def split(zotero_path: str, cache_path: str) -> None:
             os.makedirs(f"{cache_path}/splits")
 
         rich.print(f"Splitting: {abspath}...")
-        doc = zotero_qa.open_file(abspath)
+        doc = retrievals.open_file(abspath)
 
         # Get the ids.
-        ids = zotero_qa.get_ids(abspath, doc)
+        ids = retrievals.get_ids(abspath, doc)
 
         for i, page in enumerate(doc):
             # Store the chunk in a text file.

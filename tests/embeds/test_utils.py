@@ -5,7 +5,7 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-import zotero_qa
+import retrievals
 
 
 def test_load_files():
@@ -13,7 +13,7 @@ def test_load_files():
     path = "tests/files"
 
     # Act
-    files = zotero_qa.list_files(path)
+    files = retrievals.list_files(path)
 
     # Assert
     assert len(files) == 4
@@ -25,7 +25,7 @@ def test_open_file():
     path = "tests/files/10mb.pdf"
 
     # Act
-    pages = zotero_qa.open_file(path)
+    pages = retrievals.open_file(path)
 
     # Assert
     assert len(pages) == 9

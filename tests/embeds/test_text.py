@@ -7,7 +7,7 @@
 
 import pytest
 
-from zotero_qa import DocLoader, DocSplitter, PageParser, TextSplitter
+from retrievals import DocLoader, DocSplitter, PageParser, TextSplitter
 
 
 @pytest.fixture()

@@ -11,7 +11,7 @@
 
 import warnings
 
-from zotero_qa.chain import Chain
+from retrievals.chain import Chain
 
 # Suppress warnings.
 warnings.filterwarnings("ignore")

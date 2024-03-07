@@ -8,7 +8,7 @@
 import rich
 import rich.progress
 
-import zotero_qa
+import retrievals
 
 
 def cache(zotero_path: str, cache_path: str) -> None:
@@ -34,10 +34,10 @@ def cache(zotero_path: str, cache_path: str) -> None:
         raise ValueError("The path to the vector database directory is required.")
 
     rich.print("Getting the files to process...")
-    paths = zotero_qa.list_files(f"{zotero_path}/storage")
+    paths = retrievals.list_files(f"{zotero_path}/storage")
 
     rich.print("Creating or loading the cache...")
-    cache = zotero_qa.Cache(f"{cache_path}/cache.json")
+    cache = retrievals.Cache(f"{cache_path}/cache.json")
     cache.load()
 
     print("Iterating over the files to cache their page numbers...")
@@ -51,7 +51,7 @@ def cache(zotero_path: str, cache_path: str) -> None:
             continue
 
         # Load the document.
-        doc = zotero_qa.DocLoader(abspath).doc
+        doc = retrievals.DocLoader(abspath).doc
 
         rich.print(f"Caching: {abspath}...")
         cache.set(abspath, {"pages": doc.page_count, "split": 0, "embedded": 0})

@@ -7,7 +7,7 @@
 
 import pytest
 
-from zotero_qa import Cache
+from retrievals import Cache
 
 
 @pytest.fixture()

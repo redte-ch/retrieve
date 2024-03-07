@@ -13,8 +13,8 @@ import os
 
 import dotenv
 
-from zotero_qa import Cache, helpers
-from zotero_qa.store import Store
+from retrievals import Cache, helpers
+from retrievals.store import Store
 
 # Load the environment variables.
 dotenv.load_dotenv()

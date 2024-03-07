@@ -5,47 +5,47 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-import zotero_qa
+import retrievals
 
 
 def test_a_document_is_a_unique_piece_of_knowledge():
     # Arrange
-    document = zotero_qa.Document(
+    document = retrievals.Document(
         authors=[{"first_name": "Mauko", "last_name": "Quiroga-Alvarado"}],
         title="Practical Domain-Driven Design in the Public Sector",
         date=2024,
         summary="How to use domain-driven design in the public sector",
         content="...",
     )
-    different_author = zotero_qa.Document(
+    different_author = retrievals.Document(
         authors=[{"first_name": "Brunildo", "last_name": "Soto"}],
         title="Practical Domain-Driven Design in the Public Sector",
         date=2024,
         summary="How to use domain-driven design in the public sector",
         content="...",
     )
-    different_title = zotero_qa.Document(
+    different_title = retrievals.Document(
         authors=[{"first_name": "Mauko", "last_name": "Quiroga-Alvarado"}],
         title="Unpractical Feature-Driven Design in the Public Sector",
         date=2024,
         summary="How to use domain-driven design in the public sector",
         content="...",
     )
-    different_date = zotero_qa.Document(
+    different_date = retrievals.Document(
         authors=[{"first_name": "Mauko", "last_name": "Quiroga-Alvarado"}],
         title="Practical Domain-Driven Design in the Public Sector",
         date=2027,
         summary="How to use domain-driven design in the public sector",
         content="...",
     )
-    different_summary = zotero_qa.Document(
+    different_summary = retrievals.Document(
         authors=[{"first_name": "Mauko", "last_name": "Quiroga-Alvarado"}],
         title="Practical Domain-Driven Design in the Public Sector",
         date=2024,
         summary="How not to use feature-driven design in the public sector",
         content="...",
     )
-    different_content = zotero_qa.Document(
+    different_content = retrievals.Document(
         authors=[{"first_name": "Mauko", "last_name": "Quiroga-Alvarado"}],
         title="Practical Domain-Driven Design in the Public Sector",
         date=2024,

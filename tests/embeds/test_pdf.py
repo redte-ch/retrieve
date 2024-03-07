@@ -7,7 +7,7 @@
 
 import pytest
 
-from zotero_qa import DocLoader, PageParser
+from retrievals import DocLoader, PageParser
 
 
 @pytest.fixture
