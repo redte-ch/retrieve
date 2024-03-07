@@ -1242,13 +1242,13 @@ test = ["Cython (>=0.29.24,<0.30.0)"]
 
 [[package]]
 name = "huggingface-hub"
-version = "0.21.3"
+version = "0.21.4"
 description = "Client library to download and publish models, datasets and other repos on the huggingface.co hub"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "huggingface_hub-0.21.3-py3-none-any.whl", hash = "sha256:b183144336fdf2810a8c109822e0bb6ef1fd61c65da6fb60e8c3f658b7144016"},
-    {file = "huggingface_hub-0.21.3.tar.gz", hash = "sha256:26a15b604e4fc7bad37c467b76456543ec849386cbca9cd7e1e135f53e500423"},
+    {file = "huggingface_hub-0.21.4-py3-none-any.whl", hash = "sha256:df37c2c37fc6c82163cdd8a67ede261687d80d1e262526d6c0ce73b6b3630a7b"},
+    {file = "huggingface_hub-0.21.4.tar.gz", hash = "sha256:e1f4968c93726565a80edf6dc309763c7b546d0cfe79aa221206034d50155531"},
 ]
 
 [package.dependencies]
@@ -1553,13 +1553,13 @@ extended-testing = ["jinja2 (>=3,<4)"]
 
 [[package]]
 name = "langsmith"
-version = "0.1.19"
+version = "0.1.22"
 description = "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform."
 optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
-    {file = "langsmith-0.1.19-py3-none-any.whl", hash = "sha256:f1513162cec650a9ed7eba8b07d333e48e898249e46ff95c1266bfc653762460"},
-    {file = "langsmith-0.1.19.tar.gz", hash = "sha256:461093c19d5eb9b108069381c7342ba2fa30d60d77e5361e2374b779fa401b8b"},
+    {file = "langsmith-0.1.22-py3-none-any.whl", hash = "sha256:b877d302bd4cf7c79e9e6e24bedf669132abf0659143390a29350eda0945544f"},
+    {file = "langsmith-0.1.22.tar.gz", hash = "sha256:2921ae2297c2fb23baa2641b9cf416914ac7fd65f4a9dd5a573bc30efb54b693"},
 ]
 
 [package.dependencies]
@@ -3208,6 +3208,21 @@ pymysql = ["pymysql"]
 sqlcipher = ["sqlcipher3_binary"]
 
 [[package]]
+name = "sqlmodel"
+version = "0.0.16"
+description = "SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness."
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "sqlmodel-0.0.16-py3-none-any.whl", hash = "sha256:b972f5d319580d6c37ecc417881f6ec4d1ad3ed3583d0ac0ed43234a28bf605a"},
+    {file = "sqlmodel-0.0.16.tar.gz", hash = "sha256:966656f18a8e9a2d159eb215b07fb0cf5222acfae3362707ca611848a8a06bd1"},
+]
+
+[package.dependencies]
+pydantic = ">=1.10.13,<3.0.0"
+SQLAlchemy = ">=2.0.0,<2.1.0"
+
+[[package]]
 name = "stack-data"
 version = "0.6.3"
 description = "Extract data from python stack frames and tracebacks for informative displays"
@@ -3983,4 +3998,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11 || ^3.12"
-content-hash = "6e4ac619597415a8e2c2132d789b9210aa3a6e3dc1ea7b2aa5047805c385bc5d"
+content-hash = "a268e66a2e2aed7f8187937675153b355c852e11dfac626a57ebd117ba0dc1f2"

@@ -21,20 +21,21 @@
 
     [tool.poe.tasks.clean]
         sequence = [
-            "rm -rf build dist src/*.egg-info",
-            "find . -name '*.pyc' -delete",
-            "find . -name '__pycache__' -delete",
-            "find . -name '*.so' -delete",
+            "find . -name '*.c' -delete",
+            "find . -name '*.cpp' -delete",
+            "find . -name '*.dylib' -delete",
             "find . -name '*.html' -delete",
+            "find . -name '*.pyc' -delete",
+            "find . -name '*.pyd' -delete",
+            "find . -name '*.so' -delete",
+            "find . -name '__pycache__' -delete",
+            "rm -rf build dist src/*.egg-info",
         ]
         help = "Clean all build and built files."
         default_item_type = "cmd"
 
     [tool.poe.tasks.test]
-        sequence = [
-            "pytest tests",
-            "mypy src",
-        ]
+        sequence = ["pytest tests"]
         help = "Test all code."
         default_item_type = "cmd"
 
@@ -44,6 +45,7 @@
             "cython-lint .",
             "black --check .",
             "ruff check --preview .",
+            "mypy src",
         ]
         help = "Lint all code."
         default_item_type = "cmd"
@@ -54,7 +56,7 @@
             "isort .",
             "black .",
             "ruff format .",
-            "mdformat .",
+            "mdformat doc",
         ]
         help = "Format all code."
         default_item_type = "cmd"
@@ -83,7 +85,7 @@
         pymupdf = "^1.23.26" # PDF parsing
         python-dotenv = "1.0.1" # Environment variables # TODO: Replace / remove
         rich = "^13.7.1" # Pretty printing
-        sqlalchemy = "^2.0.28"
+        sqlmodel = "^0.0.16"
 
     [tool.poetry.group.dev.dependencies]
         Cython = "3.0.8" # C/C++ compiling
@@ -91,14 +93,14 @@
         black = "24.2.0" # Code formatting
         cython-lint = "0.16.0" # Cython linting
         flake8 = "^7.0.0" # Linting
+        ipython = "8.22.1" # Interactive shell
         isort = "^5.13.2" # Import sorting
+        mdformat = "^0.7.17" # Markdown formatting
         mypy = "1.8.0" # Type checking
         pytest = "^8.0.2" # Testing
         pytest-clarity = "^1.0.1" # Simpler test output
         pytest-randomly = "^3.15.0" # Test randomization
         ruff = "^0.3.0" # Linting
-        ipython = "8.22.1" # Interactive shell
-    mdformat = "^0.7.17"
 
     [tool.poetry.build]
         script = 'build.py'

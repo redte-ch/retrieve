@@ -1,34 +1,34 @@
 LICENCIA PÚBLICA DE LA UNIÓN EUROPEA v. 1.2 EUPL © Unión Europea 2007, 2016 La
-presente Licencia Pública de la Unión Europea (EUPL, por su sigla en inglés), se
-aplica a la obra (según se define más adelante) suministrada en las condiciones
+presente Licencia Pública de la Unión Europea(EUPL, por su sigla en inglés), se
+aplica a la obra(según se define más adelante) suministrada en las condiciones
 fijadas en la presente licencia. Queda prohibido cualquier uso de la obra
-distinto del autorizado por la presente licencia (en la medida en que tal uso
+distinto del autorizado por la presente licencia(en la medida en que tal uso
 esté protegido por un derecho del titular de los derechos de autor de la obra).
 La obra se suministra en las condiciones fijadas en la presente licencia cuando
-el licenciante (según se define más adelante) haya colocado la siguiente
+el licenciante(según se define más adelante) haya colocado la siguiente
 advertencia inmediatamente después de la mención a los derechos de autor de la
 obra: Licencia cedida con arreglo a la EUPL o haya expresado por cualquier otro
 medio su voluntad de conceder una licencia con arreglo a la EUPL.
 
-1.Definiciones En la presente licencia, se entenderá por: — «licencia»:la
-presente licencia, — «obra original»:la obra o el programa de ordenador
+1.Definiciones En la presente licencia, se entenderá por: — «licencia»: la
+presente licencia, — «obra original»: la obra o el programa de ordenador
 distribuido o comunicado por el licenciante con arreglo a la presente licencia
 en forma de código fuente o, en su caso, de código ejecutable, — «obras
-derivadas»:las obras o programas de ordenador que pudiera crear el licenciatario
+derivadas»: las obras o programas de ordenador que pudiera crear el licenciatario
 sobre la base de la obra original o de alguna de las modificaciones de esta. La
 presente licencia no define el grado de modificación o dependencia de la obra
 original necesario para clasificar una obra como derivada; dicho grado se
 determinará de acuerdo con la legislación sobre derechos de autor aplicable con
-arreglo al artículo 15, — «obra»:la obra original o sus obras derivadas, —
-«código fuente»:la forma de la obra legible por seres humanos que pueda ser
-estudiada y modificada más fácilmente, — «código ejecutable»:cualquier código,
+arreglo al artículo 15, — «obra»: la obra original o sus obras derivadas, —
+«código fuente»: la forma de la obra legible por seres humanos que pueda ser
+estudiada y modificada más fácilmente, — «código ejecutable»: cualquier código,
 en general compilado, destinado a ser interpretado como programa por un
-ordenador, — «licenciante»:la persona física o jurídica que distribuye o
-comunica la obra con arreglo a la licencia, — «colaborador»:la persona física o
+ordenador, — «licenciante»: la persona física o jurídica que distribuye o
+comunica la obra con arreglo a la licencia, — «colaborador»: la persona física o
 jurídica que modifica la obra con arreglo a la licencia o contribuye de
-cualquier otra manera a crear una obra derivada, — «licenciatario»:la persona
+cualquier otra manera a crear una obra derivada, — «licenciatario»: la persona
 física o jurídica que hace un uso cualquiera de la obra en las condiciones
-fijadas en la licencia, — «distribución» o «comunicación»:cualquier acto de
+fijadas en la licencia, — «distribución» o «comunicación»: cualquier acto de
 venta, donación, préstamo, alquiler, distribución, comunicación, transmisión o
 cualquier otro acto de puesta a disposición, en línea o fuera de línea, de
 copias de la obra o de acceso a sus funcionalidades esenciales a otra persona
@@ -88,7 +88,7 @@ la obra original o de obras derivadas basadas en la obra original, dicha
 distribución o comunicación deberá hacerse en las condiciones fijadas en la
 presente licencia o una versión posterior de la presente licencia, salvo si la
 obra original se distribuye expresamente solo bajo la presente versión de la
-licencia (por ejemplo, comunicando «EUPL v. 1.2 solamente». El licenciatario
+licencia(por ejemplo, comunicando «EUPL v. 1.2 solamente». El licenciatario
 (ahora en su calidad de licenciante) no podrá ofrecer ni imponer condiciones
 adicionales sobre la obra o las obras derivadas que modifiquen o limiten las
 condiciones de la licencia.
@@ -171,7 +171,7 @@ de la obra, la creación de una obra derivada o la distribución o comunicación
 la obra o de copias de la misma.
 
 11.Información al público En caso de que el licenciatario proceda a la
-distribución o comunicación de la obra por medios electrónicos (por ejemplo,
+distribución o comunicación de la obra por medios electrónicos(por ejemplo,
 ofreciendo la descarga de la obra a distancia), el canal o medio de distribución
 (por ejemplo, un sitio web) deberá facilitar al público, como mínimo, la
 información exigida por la legislación aplicable acerca del licenciante, la
@@ -217,17 +217,17 @@ el licenciante no tiene sede, residencia ni domicilio social en un Estado
 miembro de la Unión Europea.
 
 Apéndice Son «licencias compatibles» con arreglo al artículo 5 de la EUPL: — GNU
-General Public License (GPL) v. 2, v. 3 — GNU Affero General Public License
-(AGPL) v. 3 — Open Software License (OSL) v. 2.1, v. 3.0 — Eclipse Public
-License (EPL) v. 1.0 — CeCILL v. 2.0, v. 2.1 — Mozilla Public Licence (MPL) v. 2
-— GNU Lesser General Public Licence (LGPL) v. 2.1, v. 3 — Creative Commons
-Attribution-ShareAlike v. 3.0 Unported (CC BY-SA 3.0) para obras que no sean
-programas informáticos — European Union Public Licence (EUPL) v. 1.1, v. 1.2 —
-Québec Free and Open-Source Licence — Reciprocity (LiLiQ-R) or Strong
-Reciprocity (LiLiQ-R+). La Comisión Europea podrá actualizar el presente
+General Public License(GPL) v. 2, v. 3 — GNU Affero General Public License
+(AGPL) v. 3 — Open Software License(OSL) v. 2.1, v. 3.0 — Eclipse Public
+License(EPL) v. 1.0 — CeCILL v. 2.0, v. 2.1 — Mozilla Public Licence(MPL) v. 2
+— GNU Lesser General Public Licence(LGPL) v. 2.1, v. 3 — Creative Commons
+Attribution - ShareAlike v. 3.0 Unported(CC BY - SA 3.0) para obras que no sean
+programas informáticos — European Union Public Licence(EUPL) v. 1.1, v. 1.2 —
+Québec Free and Open - Source Licence — Reciprocity(LiLiQ - R) or Strong
+Reciprocity (LiLiQ - R +). La Comisión Europea podrá actualizar el presente
 apéndice a versiones posteriores de las licencias mencionadas sin presentar una
 nueva versión de la EUPL, siempre que contemplen los derechos reconocidos en el
 artículo 2 de la presente licencia y protejan de la apropiación exclusiva el
 código fuente cubierto. Cualquier otra modificación o adición al presente
 apéndice exigirá la presentación de una nueva versión de la EUPL. 19.5.2017 L
-128/64 Diario Oficial de la Unión Europea ES
+128 / 64 Diario Oficial de la Unión Europea ES

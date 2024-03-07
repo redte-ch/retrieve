@@ -1,8 +1,10 @@
-*.c*
-*.h
+*.c
+*.cpp
+*.dylib
 *.html
 *.pyd
 *.so
+*.sqlite
 .DS_Store
 .env
 .idea

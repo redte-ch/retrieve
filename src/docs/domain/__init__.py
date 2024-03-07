@@ -4,3 +4,9 @@
 #
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+
+from ._library import Library
+
+__all__ = [
+    "Library",
+]
