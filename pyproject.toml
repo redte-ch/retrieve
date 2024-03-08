@@ -66,12 +66,11 @@
     description = ""
     include = ["src/**/*.so", "src/**/*.pyd", "src/**/*.dylib"]
     license = "APGL-3.0"
-    name = "retrieval.ist"
+    name = "retrievalist"
     readme = "README.md"
     version = "0.0.0-post.22+7cefc52"
     packages = [
-        { include = "zotero_qa", from = "src" },
-        { include = "cli", from = "src" },
+        { include = "docs", from = "src" },
     ]
 
     [tool.poetry.dependencies]

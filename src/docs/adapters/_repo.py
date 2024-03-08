@@ -14,11 +14,11 @@ import sqlmodel
 from sqlalchemy.engine.base import Engine
 from sqlmodel import Session
 
-from docs.adapters.orm import LibraryORM
-from docs.domain import Library
+from docs import domain
+from . import _orm as orm
 
 
-class LibraryRepo:
+class Library:
     """A repository for Zotero libraries.
 
     This class provides methods to interact with the database for operations
@@ -32,24 +32,24 @@ class LibraryRepo:
     def __init__(self, engine: Engine) -> None:
         self.engine = engine
 
-    def add(self, library: Library) -> None:
+    def add(self, library: domain.Library) -> None:
         """Add a new library to the database."""
         with Session(self.engine) as session:
-            session.add(LibraryORM(**msgspec.to_builtins(library)))
+            session.add(orm.Library(**msgspec.to_builtins(library)))
             session.commit()
 
-    def get(self, library_id: int) -> Library | None:
+    def get(self, library_id: int) -> domain.Library | None:
         """Retrieve an instance of a library by id."""
 
         with Session(self.engine) as session:
-            if (library := session.get(LibraryORM, library_id)) is None:
+            if (library := session.get(orm.Library, library_id)) is None:
                 return None
-            return Library(library.model_dump())
+            return domain.Library(library.model_dump())
 
-    def list(self) -> Sequence[Library]:
+    def list(self) -> Sequence[domain.Library]:
         """Retrieve all instances of a given class from the database."""
         with Session(self.engine) as session:
             return [
-                Library(library.model_dump())
-                for library in session.exec(sqlmodel.select(LibraryORM)).all()
+                domain.Library(library.model_dump())
+                for library in session.exec(sqlmodel.select(orm.Library)).all()
             ]
