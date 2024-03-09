@@ -7,18 +7,19 @@
 
 from __future__ import annotations
 
-from typing import Protocol, Sequence, TypeVar
-
-Model = TypeVar("Model")
-
-Engine = TypeVar("Engine")
+from typing import Protocol, Sequence
 
 
-class Repo(Protocol[Model]):
-    # The actual db we'll use.
-    engine: Engine
+class Model(Protocol): ...
 
-    def __init__(self, __engine: Engine) -> None: ...
+
+class ORM(Protocol):
+    @staticmethod
+    def from_model(__model: Model) -> ORM: ...
+    def to_model(self) -> Model: ...
+
+
+class Repo(Protocol):
     def add(self, __instance: Model) -> None: ...
     def get(self, __id: int) -> Model | None: ...
     def list(self) -> Sequence[Model]: ...

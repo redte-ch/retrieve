@@ -9,47 +9,47 @@ from __future__ import annotations
 
 from typing import Sequence
 
-import msgspec
 import sqlmodel
 from sqlalchemy.engine.base import Engine
 from sqlmodel import Session
 
-from docs import domain
-from . import _orm as orm
+from docs.typing import ORM, Model
 
 
-class Library:
-    """A repository for Zotero libraries.
-
-    This class provides methods to interact with the database for operations
-    related to libraries.
+class Repo:
+    """A repository for Zotero models.
 
     Attributes:
         engine: The SQLAlchemy engine object used for database operations.
 
     """
 
-    def __init__(self, engine: Engine) -> None:
+    def __init__(
+        self,
+        model: type[Model],
+        orm: type[ORM],
+        engine: Engine,
+    ) -> None:
         self.engine = engine
+        self.Model = model
+        self.ORM = orm
 
-    def add(self, library: domain.Library) -> None:
+    def add(self, model: Model) -> None:
         """Add a new library to the database."""
         with Session(self.engine) as session:
-            session.add(orm.Library(**msgspec.to_builtins(library)))
+            session.add(self.ORM.from_model(model))
             session.commit()
 
-    def get(self, library_id: int) -> domain.Library | None:
+    def get(self, model_id: int) -> Model | None:
         """Retrieve an instance of a library by id."""
-
         with Session(self.engine) as session:
-            if (library := session.get(orm.Library, library_id)) is None:
-                return None
-            return domain.Library(library.model_dump())
+            model = session.get(self.ORM, model_id)
+            return model.to_model() if model is not None else None
 
-    def list(self) -> Sequence[domain.Library]:
+    def list(self) -> Sequence[Model]:
         """Retrieve all instances of a given class from the database."""
         with Session(self.engine) as session:
             return [
-                domain.Library(library.model_dump())
-                for library in session.exec(sqlmodel.select(orm.Library)).all()
+                model.to_model()
+                for model in session.exec(sqlmodel.select(self.ORM)).all()
             ]

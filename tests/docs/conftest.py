@@ -9,17 +9,10 @@ import pytest
 
 import docs
 
-# from zotero.adapters import orm
-
-
-@pytest.fixture()
-def db_path(tmp_path):
-    return tmp_path / "sqlite.db"
-
 
 @pytest.fixture
-def db_engine(db_path):
-    return docs.create_db_engine(db_path)
+def db_engine():
+    return docs.create_db_engine(":memory:")
 
 
 @pytest.fixture(autouse=True)

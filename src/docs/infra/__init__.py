@@ -5,9 +5,7 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-from . import _orm as orm, _repo as repo
+from ._repo import Repo
+from ._orm import Libraries, Items, ItemAttachments, Collections
 
-__all__ = [
-    "orm",
-    "repo",
-]
+__all__ = ["Repo", "Libraries", "Items", "ItemAttachments", "Collections"]
