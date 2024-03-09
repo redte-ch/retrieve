@@ -6,6 +6,5 @@
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
 from ._models import Collection, File, Item, Library
-from ._services import get_pdf_paths
 
-__all__ = ["Item", "File", "Collection", "Library", "get_pdf_paths"]
+__all__ = ["Item", "File", "Collection", "Library"]
