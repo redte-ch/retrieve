@@ -12,7 +12,8 @@ from typing import Protocol, Sequence, TypeVar
 T = TypeVar("T")
 
 
-class Model(Protocol): ...
+class Model(Protocol):
+    id: int | None
 
 
 class ORM(Protocol):

@@ -5,6 +5,7 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
+
 import pytest
 import sqlalchemy
 from sqlalchemy.orm import Session

@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 import enum
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 class LibraryType(enum.StrEnum):
@@ -22,8 +22,8 @@ class Library:
     type: str = LibraryType.USER
     editable: int = 0
     filesEditable: int = 0
-    collections: list[Collection] = field(default_factory=list)
-    items: list[Item] = field(default_factory=list)
+    collections: tuple[Collection, ...] = ()
+    items: tuple[Item, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -34,7 +34,7 @@ class Collection:
     library_id: int | None = None
     key: str | None = None
     library: Library | None = None
-    items: list[Item] = field(default_factory=list)
+    items: tuple[Item, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -44,8 +44,8 @@ class Item:
     library_id: int | None = None
     key: str | None = None
     library: Library | None = None
-    collections: list[Collection] = field(default_factory=list)
-    files: list[File] = field(default_factory=list)
+    collections: tuple[Collection, ...] = ()
+    files: tuple[File, ...] = ()
 
 
 @dataclass(frozen=True)

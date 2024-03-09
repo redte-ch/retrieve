@@ -41,19 +41,19 @@ class Libraries(SQLModel, table=True):
             type=self.type,
             editable=self.editable,
             filesEditable=self.filesEditable,
-            collections=(
+            collections=tuple(
                 [
                     collection.to_model(exclude=self)
                     for collection in self.collections
                     if collection != exclude
                 ]
                 if self.collections is not None
-                else []
+                else ()
             ),
-            items=(
+            items=tuple(
                 [item.to_model(exclude=self) for item in self.items if item != exclude]
                 if self.items is not None
-                else []
+                else ()
             ),
         )
 
@@ -95,10 +95,10 @@ class Collections(SQLModel, table=True):
                 if self.library is not None and self.library != exclude
                 else None
             ),
-            items=(
+            items=tuple(
                 [item.to_model(exclude=self) for item in self.items if item != exclude]
                 if self.items is not None
-                else []
+                else ()
             ),
         )
 
@@ -138,23 +138,23 @@ class Items(SQLModel, table=True):
                 if self.library is not None and self.library != exclude
                 else None
             ),
-            collections=(
+            collections=tuple(
                 [
                     collection.to_model(exclude=self)
                     for collection in self.collections
                     if collection != exclude
                 ]
                 if self.collections is not None
-                else []
+                else ()
             ),
-            files=(
+            files=tuple(
                 [
                     file.to_model(exclude=self)
                     for file in self.itemAttachments
                     if file != exclude
                 ]
                 if self.itemAttachments is not None
-                else []
+                else ()
             ),
         )
 
