@@ -7,12 +7,8 @@
 
 from __future__ import annotations
 
-from typing import Sequence
-
-
 import enum
-
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 class LibraryType(enum.StrEnum):
@@ -26,23 +22,37 @@ class Library:
     type: str = LibraryType.USER
     editable: int = 0
     filesEditable: int = 0
+    collections: list[Collection] = field(default_factory=list)
+    items: list[Item] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
 class Collection:
     id: int | None = None
+    name: str | None = None
+    collection_id: int | None = None
+    library_id: int | None = None
+    key: str | None = None
+    library: Library | None = None
+    items: list[Item] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
 class Item:
     id: int | None = None
+    type_id: int | None = None
+    library_id: int | None = None
     key: str | None = None
-    files: Sequence[File] = tuple()
-
+    library: Library | None = None
+    collections: list[Collection] = field(default_factory=list)
+    files: list[File] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
 class File:
     id: int | None = None
-    contentType: str | None = None
     path: str | None = None
+    link_mode: int | None = None
+    content_type: str | None = None
+    storage_hash: str | None = None
+    item: Item | None = None

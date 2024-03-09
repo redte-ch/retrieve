@@ -6,11 +6,11 @@
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
 import pytest
+import sqlalchemy
+from sqlalchemy.orm import Session
 
 from docs.domain import Library
 from docs.infra import Libraries, Repo
-import sqlalchemy
-from sqlalchemy.orm import Session
 
 
 @pytest.fixture
@@ -34,7 +34,7 @@ def test_get_a_library_from_the_database(repo):
     # Act
     with Session(repo.engine) as session:
         statement = sqlalchemy.text(
-            'INSERT INTO "libraries" (type, editable, filesEditable) '
+            "INSERT INTO libraries (type, editable, filesEditable) "
             'VALUES ("group", 0, 1) ;'
         )
         session.execute(statement)
@@ -49,7 +49,7 @@ def test_get_all_libraries_from_the_database(repo):
     # Act
     with Session(repo.engine) as session:
         statement = sqlalchemy.text(
-            'INSERT INTO "libraries" (type, editable, filesEditable) '
+            "INSERT INTO libraries (type, editable, filesEditable) "
             'SELECT "user", 0, 1 UNION ALL '
             'SELECT "group", 1, 0 ;'
         )

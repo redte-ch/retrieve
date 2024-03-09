@@ -5,25 +5,26 @@
 #  Licensed under the EUPL-1.2-or-later licence.
 #  For details: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-from docs import domain
-from docs.domain import Item, File
-
 import pytest
+
+from docs import domain
+from docs.domain import File, Item
+
 
 @pytest.fixture
 def files():
-    return [File(
-        id=1,
-        path="storage:1mb.pdf",
-        contentType="application/pdf",
-    )]
+    return [
+        File(
+            id=1,
+            path="storage:1mb.pdf",
+            content_type="application/pdf",
+        )
+    ]
+
 
 @pytest.fixture
 def items(files):
-    return [Item(
-        key="NTQEM58T",
-        files=files
-    )]
+    return [Item(key="NTQEM58T", files=files)]
 
 
 def test_get_pdf_paths(items):
