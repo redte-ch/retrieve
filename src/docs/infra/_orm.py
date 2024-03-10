@@ -35,23 +35,19 @@ class Libraries(SQLModel, table=True):
             filesEditable=model.filesEditable,
         )
 
-    def to_model(self, exclude: Optional[SQLModel] = None) -> Library:
+    def to_model(self) -> Library:
         return Library(
             id=self.libraryID,
             type=self.type,
             editable=self.editable,
             filesEditable=self.filesEditable,
             collections=tuple(
-                [
-                    collection.to_model(exclude=self)
-                    for collection in self.collections
-                    if collection != exclude
-                ]
+                [collection.to_model() for collection in self.collections]
                 if self.collections is not None
                 else ()
             ),
             items=tuple(
-                [item.to_model(exclude=self) for item in self.items if item != exclude]
+                [item.to_model() for item in self.items]
                 if self.items is not None
                 else ()
             ),
@@ -83,20 +79,15 @@ class Collections(SQLModel, table=True):
             key=model.key,
         )
 
-    def to_model(self, exclude: Optional[SQLModel] = None) -> Collection:
+    def to_model(self) -> Collection:
         return Collection(
             id=self.collectionID,
             name=self.collectionName,
             collection_id=self.parentCollectionID,
             library_id=self.libraryID,
             key=self.key,
-            library=(
-                self.library.to_model(exclude=self)
-                if self.library is not None and self.library != exclude
-                else None
-            ),
             items=tuple(
-                [item.to_model(exclude=self) for item in self.items if item != exclude]
+                [item.to_model() for item in self.items]
                 if self.items is not None
                 else ()
             ),
@@ -127,32 +118,14 @@ class Items(SQLModel, table=True):
             key=model.key,
         )
 
-    def to_model(self, exclude: Optional[SQLModel] = None) -> Item:
+    def to_model(self) -> Item:
         return Item(
             id=self.itemID,
             type_id=self.itemTypeID,
             library_id=self.libraryID,
             key=self.key,
-            library=(
-                self.library.to_model(exclude=self)
-                if self.library is not None and self.library != exclude
-                else None
-            ),
-            collections=tuple(
-                [
-                    collection.to_model(exclude=self)
-                    for collection in self.collections
-                    if collection != exclude
-                ]
-                if self.collections is not None
-                else ()
-            ),
             files=tuple(
-                [
-                    file.to_model(exclude=self)
-                    for file in self.itemAttachments
-                    if file != exclude
-                ]
+                [file.to_model() for file in self.itemAttachments]
                 if self.itemAttachments is not None
                 else ()
             ),
@@ -177,16 +150,11 @@ class ItemAttachments(SQLModel, table=True):
             storageHash=model.storage_hash,
         )
 
-    def to_model(self, exclude: Optional[SQLModel] = None) -> File:
+    def to_model(self) -> File:
         return File(
             id=self.itemID,
             path=self.path,
             link_mode=self.linkMode,
             content_type=self.contentType,
             storage_hash=self.storageHash,
-            item=(
-                self.item.to_model(exclude=self)
-                if self.item is not None and self.item != exclude
-                else None
-            ),
         )
