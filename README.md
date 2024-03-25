@@ -1,4 +1,4 @@
-# retrieval.ist
+# Retrieve
 
 You're already that smart. 
 
